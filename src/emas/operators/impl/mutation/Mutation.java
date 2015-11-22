@@ -29,7 +29,7 @@ public class Mutation implements IMutation {
 	}
 
 	@Override
-	public void mutate(Genotype agent) {
+	public void mutate(Genotype genotype) {
 		// do mutation
 	}
 

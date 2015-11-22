@@ -14,10 +14,10 @@ public interface ISelection {
 	/**
 	 * Removes worst genotype.
 	 * 
-	 * @param agents
+	 * @param genotypes
 	 *            list of genotype
 	 */
-	public void removeWorst(List<Genotype> agents);
+	public Genotype getWorst(List<Genotype> genotypes);
 
 	/**
 	 * Removes given number of worst genotypes.
@@ -27,6 +27,6 @@ public interface ISelection {
 	 * @param amount
 	 *            amount of genotypes to remove
 	 */
-	public void removeWorst(List<Genotype> agents, int amount);
+	public List<Genotype> getWorst(List<Genotype> genotypes, int amount);
 
 }

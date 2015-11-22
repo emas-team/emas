@@ -26,24 +26,22 @@ public class Selection implements ISelection {
 	}
 
 	@Override
-	public void removeWorst(List<Genotype> genotypes) {
+	public Genotype getWorst(List<Genotype> genotypes) {
 		if (genotypes == null || genotypes.isEmpty()) {
-			return;
+			return null;
 		}
-		genotypes.remove(worst(genotypes));
+		return worst(genotypes);
 	}
 
 	@Override
-	public void removeWorst(List<Genotype> genotypes, int amount) {
+	public List<Genotype> getWorst(List<Genotype> genotypes, int amount) {
 		if (genotypes == null) {
-			return;
+			return null;
 		} else if (genotypes.size() < amount) {
-			genotypes.clear();
+			return genotypes;
 		} else {
 			genotypes.sort(genotypeComparator);
-			for (int i = 0; i < amount; i++) {
-				genotypes.remove(0);
-			}
+			return genotypes.subList(0, amount - 1);
 		}
 	}
 

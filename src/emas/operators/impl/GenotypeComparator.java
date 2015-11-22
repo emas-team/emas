@@ -6,7 +6,7 @@ import emas.agents.Genotype;
 import emas.operators.IEvaluation;
 
 /**
- * Agent comparator. Provides implementation for comparing agents.
+ * Genotype comparator. Provides implementation for comparing genotypes.
  * 
  * @author Klaudia Bałazy, Robert Poparda
  */
