@@ -21,7 +21,21 @@ public class Agent implements IAgent{
 
     }
 
+    public int evaluation(Agent agent){
+
+        return 0;
+    }
+
     public void crossover(AgentHelper agentHelper){
+
+    }
+
+    public void chooseAction(Agent agent, Integer energy){
+
+    }
+
+    @Override
+    public void performAction() {
 
     }
 }
