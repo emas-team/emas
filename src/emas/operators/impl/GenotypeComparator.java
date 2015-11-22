@@ -2,7 +2,7 @@ package emas.operators.impl;
 
 import java.util.Comparator;
 
-import emas.agents.Agent;
+import emas.agents.Genotype;
 import emas.operators.IEvaluation;
 
 /**
@@ -10,7 +10,7 @@ import emas.operators.IEvaluation;
  * 
  * @author Klaudia Bałazy, Robert Poparda
  */
-public class AgentsComparator implements Comparator<Agent> {
+public class GenotypeComparator implements Comparator<Genotype> {
 
 	private IEvaluation qualityEvaluator;
 
@@ -18,17 +18,18 @@ public class AgentsComparator implements Comparator<Agent> {
 	 * Constructor.
 	 * 
 	 * @param evaluator
-	 *            evalutor that will be used to estimate agents quality
+	 *            evalutor that will be used to estimate genotypes quality
 	 */
-	public AgentsComparator(IEvaluation evaluator) {
+	public GenotypeComparator(IEvaluation evaluator) {
 		this.qualityEvaluator = evaluator;
 	}
 
 	@Override
-	public int compare(Agent agent1, Agent agent2) {
+	public int compare(Genotype genotype1, Genotype genotype2) {
 
-		return (int) Math.signum(getQualityEvaluator().evaluateQuality(agent1)
-				- getQualityEvaluator().evaluateQuality(agent2));
+		return (int) Math.signum(getQualityEvaluator().evaluateQuality(
+				genotype1)
+				- getQualityEvaluator().evaluateQuality(genotype2));
 	}
 
 	public IEvaluation getQualityEvaluator() {

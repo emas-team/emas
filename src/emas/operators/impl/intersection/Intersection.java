@@ -1,6 +1,6 @@
 package emas.operators.impl.intersection;
 
-import emas.agents.Agent;
+import emas.agents.Genotype;
 import emas.operators.IEvaluation;
 import emas.operators.IIntersection;
 
@@ -18,7 +18,7 @@ public class Intersection implements IIntersection {
 	}
 
 	@Override
-	public Agent doIntersection(Agent agent1, Agent agent2) {
+	public Genotype doIntersection(Genotype genotype1, Genotype genotype2) {
 		return null;
 	}
 

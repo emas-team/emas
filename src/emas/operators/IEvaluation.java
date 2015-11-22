@@ -1,6 +1,6 @@
 package emas.operators;
 
-import emas.agents.Agent;
+import emas.agents.Genotype;
 
 /**
  * Evaluation operation interface.
@@ -10,14 +10,14 @@ import emas.agents.Agent;
 public interface IEvaluation {
 
 	/**
-	 * Evaluates quality of an agent. The higher value is returned the better
-	 * agent was evaluated.
+	 * Evaluates quality of a genotype. The higher value is returned the better
+	 * genotype was evaluated.
 	 * 
 	 * Range of returned value: [0.0;1.0].
 	 * 
-	 * @param agent
-	 *            agent to be evaluated
+	 * @param genotype
+	 *            genotype to be evaluated
 	 * @return result of evaluation
 	 */
-	public double evaluateQuality(Agent agent);
+	public double evaluateQuality(Genotype genotype);
 }

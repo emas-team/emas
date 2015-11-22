@@ -1,6 +1,6 @@
 package emas.operators;
 
-import emas.agents.Agent;
+import emas.agents.Genotype;
 
 /**
  * Mutation operation interface.
@@ -10,9 +10,10 @@ import emas.agents.Agent;
 public interface IMutation {
 
 	/**
-	 * Takes agents current parameters and modifies it.
+	 * Takes genotype parameters and modifies it.
 	 * 
-	 * @param agent
+	 * @param genotype
+	 *            genotype to be mutates
 	 */
-	public void mutate(Agent agent);
+	public void mutate(Genotype genotype);
 }

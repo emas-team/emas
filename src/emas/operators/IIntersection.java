@@ -1,6 +1,6 @@
 package emas.operators;
 
-import emas.agents.Agent;
+import emas.agents.Genotype;
 
 /**
  * Intersection operation interface.
@@ -10,14 +10,14 @@ import emas.agents.Agent;
 public interface IIntersection {
 
 	/**
-	 * Does intersection for provided pair of agents and returns newly created
-	 * agent.
+	 * Does intersection for provided pair of genotype and returns newly created
+	 * genotype.
 	 * 
-	 * @param agent1
-	 *            first agent
-	 * @param agent2
-	 *            second agent
-	 * @return newly created agent
+	 * @param genotype1
+	 *            first genotype
+	 * @param genotype2
+	 *            second genotype
+	 * @return newly created genotype
 	 */
-	public Agent doIntersection(Agent agent1, Agent agent2);
+	public Genotype doIntersection(Genotype genotype1, Genotype genotype2);
 }

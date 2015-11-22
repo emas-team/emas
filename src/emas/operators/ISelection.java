@@ -2,7 +2,7 @@ package emas.operators;
 
 import java.util.List;
 
-import emas.agents.Agent;
+import emas.agents.Genotype;
 
 /**
  * Selection operation interface.
@@ -12,21 +12,21 @@ import emas.agents.Agent;
 public interface ISelection {
 
 	/**
-	 * Removes worst agents.
+	 * Removes worst genotype.
 	 * 
 	 * @param agents
-	 *            list of agents
+	 *            list of genotype
 	 */
-	public void removeWorst(List<Agent> agents);
+	public void removeWorst(List<Genotype> agents);
 
 	/**
-	 * Removes given number of worst agents.
+	 * Removes given number of worst genotypes.
 	 * 
 	 * @param agents
-	 *            list of agents
+	 *            list of genotypes
 	 * @param amount
-	 *            amount of agents to remove
+	 *            amount of genotypes to remove
 	 */
-	public void removeWorst(List<Agent> agents, int amount);
+	public void removeWorst(List<Genotype> agents, int amount);
 
 }

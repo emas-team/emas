@@ -1,5 +1,5 @@
 package emas.agents;
 
-public class Agent {
+public class Genotype {
 
 }

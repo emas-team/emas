@@ -3,10 +3,10 @@ package emas.operators.impl.selection;
 import java.util.Comparator;
 import java.util.List;
 
-import emas.agents.Agent;
+import emas.agents.Genotype;
 import emas.operators.IEvaluation;
 import emas.operators.ISelection;
-import emas.operators.impl.AgentsComparator;
+import emas.operators.impl.GenotypeComparator;
 
 /**
  * Implementation of selection operation.
@@ -15,45 +15,45 @@ import emas.operators.impl.AgentsComparator;
  */
 public class Selection implements ISelection {
 
-	private Comparator<Agent> agentComparator;
+	private Comparator<Genotype> genotypeComparator;
 
 	public Selection(IEvaluation evaluationMethod) {
-		this(new AgentsComparator(evaluationMethod));
+		this(new GenotypeComparator(evaluationMethod));
 	}
 
-	public Selection(Comparator<Agent> agentComparator) {
-		this.agentComparator = agentComparator;
+	public Selection(Comparator<Genotype> genotypeComparator) {
+		this.genotypeComparator = genotypeComparator;
 	}
 
 	@Override
-	public void removeWorst(List<Agent> agents) {
-		if (agents == null || agents.isEmpty()) {
+	public void removeWorst(List<Genotype> genotypes) {
+		if (genotypes == null || genotypes.isEmpty()) {
 			return;
 		}
-		agents.remove(worst(agents));
+		genotypes.remove(worst(genotypes));
 	}
 
 	@Override
-	public void removeWorst(List<Agent> agents, int amount) {
-		if (agents == null) {
+	public void removeWorst(List<Genotype> genotypes, int amount) {
+		if (genotypes == null) {
 			return;
-		} else if (agents.size() < amount) {
-			agents.clear();
+		} else if (genotypes.size() < amount) {
+			genotypes.clear();
 		} else {
-			agents.sort(agentComparator);
+			genotypes.sort(genotypeComparator);
 			for (int i = 0; i < amount; i++) {
-				agents.remove(0);
+				genotypes.remove(0);
 			}
 		}
 	}
 
-	public Agent worst(List<Agent> agents) {
-		if (agents == null || agents.isEmpty()) {
+	public Genotype worst(List<Genotype> genotypes) {
+		if (genotypes == null || genotypes.isEmpty()) {
 			return null;
 		}
-		Agent worst = agents.get(0);
-		for (Agent current : agents) {
-			if (agentComparator.compare(worst, current) > 0) {
+		Genotype worst = genotypes.get(0);
+		for (Genotype current : genotypes) {
+			if (genotypeComparator.compare(worst, current) > 0) {
 				worst = current;
 			}
 		}
