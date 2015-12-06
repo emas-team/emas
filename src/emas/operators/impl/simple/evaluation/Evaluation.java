@@ -1,6 +1,5 @@
-package emas.operators.impl.evaluation;
+package emas.operators.impl.simple.evaluation;
 
-import emas.agents.Genotype;
 import emas.agents.IGenotype;
 import emas.operators.IEvaluation;
 
@@ -9,11 +8,10 @@ import emas.operators.IEvaluation;
  * 
  * @author Klaudia Bałazy, Robert Poparda
  */
-public class Evaluation implements IEvaluation {
+public class Evaluation implements IEvaluation<IGenotype> {
 
 	@Override
 	public double evaluateQuality(IGenotype genotype) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

@@ -12,7 +12,7 @@ import emas.operators.IEvaluation;
  */
 public class GenotypeComparator implements Comparator<Genotype> {
 
-	private IEvaluation qualityEvaluator;
+	private IEvaluation<Genotype> qualityEvaluator;
 
 	/**
 	 * Constructor.
@@ -20,7 +20,7 @@ public class GenotypeComparator implements Comparator<Genotype> {
 	 * @param evaluator
 	 *            evaluator that will be used to estimate genotypes quality
 	 */
-	public GenotypeComparator(IEvaluation evaluator) {
+	public GenotypeComparator(IEvaluation<Genotype> evaluator) {
 		this.qualityEvaluator = evaluator;
 	}
 
@@ -32,11 +32,11 @@ public class GenotypeComparator implements Comparator<Genotype> {
 				- getQualityEvaluator().evaluateQuality(genotype2));
 	}
 
-	public IEvaluation getQualityEvaluator() {
+	public IEvaluation<Genotype> getQualityEvaluator() {
 		return qualityEvaluator;
 	}
 
-	public void setQualityEvaluator(IEvaluation qualityEvaluator) {
+	public void setQualityEvaluator(IEvaluation<Genotype> qualityEvaluator) {
 		this.qualityEvaluator = qualityEvaluator;
 	}
 

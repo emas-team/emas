@@ -1,6 +1,5 @@
 package emas.operators;
 
-import emas.agents.Genotype;
 import emas.agents.IGenotype;
 
 /**
@@ -8,7 +7,7 @@ import emas.agents.IGenotype;
  * 
  * @author Klaudia Bałazy, Robert Poparda
  */
-public interface IEvaluation <X extends IGenotype> {
+public interface IEvaluation <T extends IGenotype> {
 
 	/**
 	 * Evaluates quality of a genotype. The higher value is returned the better
@@ -20,5 +19,5 @@ public interface IEvaluation <X extends IGenotype> {
 	 *            genotype to be evaluated
 	 * @return result of evaluation
 	 */
-	public double evaluateQuality(X genotype);
+	public double evaluateQuality(T genotype);
 }

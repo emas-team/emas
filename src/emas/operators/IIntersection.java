@@ -1,6 +1,5 @@
 package emas.operators;
 
-import emas.agents.Genotype;
 import emas.agents.IGenotype;
 
 /**
@@ -8,7 +7,7 @@ import emas.agents.IGenotype;
  * 
  * @author Klaudia Bałazy, Robert Poparda
  */
-public interface IIntersection <X extends IGenotype> {
+public interface IIntersection <T extends IGenotype> {
 
 	/**
 	 * Does intersection for provided pair of genotype and returns newly created
@@ -20,5 +19,5 @@ public interface IIntersection <X extends IGenotype> {
 	 *            second genotype
 	 * @return newly created genotype
 	 */
-	public Genotype doIntersection(X genotype1, X genotype2);
+	public T doIntersection(T genotype1, T genotype2);
 }
