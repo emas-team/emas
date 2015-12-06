@@ -13,15 +13,8 @@ public interface IOperationFactory {
 	 * 
 	 * @return implementation of mutation operation.
 	 */
-	public IMutation createMutationOp();
 
-	/**
-	 * Creates and returns new object providing implementation of selection
-	 * operation.
-	 * 
-	 * @return implementation of selection operation.
-	 */
-	public ISelection createSelectionOp();
+	public IMutation createMutationOp();
 
 	/**
 	 * Creates and returns new object providing implementation of intersection

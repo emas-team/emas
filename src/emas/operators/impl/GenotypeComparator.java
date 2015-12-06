@@ -18,7 +18,7 @@ public class GenotypeComparator implements Comparator<Genotype> {
 	 * Constructor.
 	 * 
 	 * @param evaluator
-	 *            evalutor that will be used to estimate genotypes quality
+	 *            evaluator that will be used to estimate genotypes quality
 	 */
 	public GenotypeComparator(IEvaluation evaluator) {
 		this.qualityEvaluator = evaluator;

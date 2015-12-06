@@ -1,6 +1,7 @@
 package emas.operators.impl.mutation;
 
 import emas.agents.Genotype;
+import emas.agents.IGenotype;
 import emas.operators.IEvaluation;
 import emas.operators.IMutation;
 import emas.operators.impl.evaluation.Evaluation;
@@ -29,7 +30,7 @@ public class Mutation implements IMutation {
 	}
 
 	@Override
-	public void mutate(Genotype genotype) {
+	public void mutate(IGenotype genotype) {
 		// do mutation
 	}
 
