@@ -2,7 +2,7 @@ package emas.operators.impl;
 
 import java.util.Comparator;
 
-import emas.agents.Genotype;
+import emas.agents.genotype.Genotype;
 import emas.operators.IEvaluation;
 
 /**

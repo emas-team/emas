@@ -1,8 +1,8 @@
 package emas.agents.genotype;
 
-import emas.agents.IGenotype;
-
 import java.util.List;
+
+import emas.agents.IGenotype;
 
 public class Genotype implements IGenotype {
 
