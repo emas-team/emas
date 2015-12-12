@@ -1,5 +1,7 @@
 package emas.agents;
 
+import emas.agents.genotype.Genotype;
+
 /**
  *
  */
@@ -7,8 +9,8 @@ public class Agent implements IAgent{
     private Genotype genotype;
     private Integer energy;
 
-    public Agent(Genotype genotype){
-        this.genotype = genotype;
+    public Agent(){
+        this.genotype = new Genotype();
         this.energy = 100;
     }
 
@@ -17,11 +19,40 @@ public class Agent implements IAgent{
         this.energy = energy;
     }
 
-    private void crossover(){
+    public Genotype getGenotype() {
+        return genotype;
+    }
+
+    @Override
+    public void getAction() {
 
     }
 
-    public void crossover(AgentHelper agentHelper){
+    @Override
+    public double evaluate() {
+        return getGenotype().evaluate();
+    }
 
+    public Integer getEnergy() {
+        return energy;
+    }
+
+    public int lose() {
+        int lose = (int)(energy * 0.2) + 20;
+        if(lose>energy){
+            lose = energy;
+        }
+        energy -= lose;
+        return lose;
+    }
+
+    public void win(int energy) {
+        this.energy += energy;
+    }
+
+    public int crossoverEnergy() {
+        int lose = (int)(energy * 0.3);
+        energy -= lose;
+        return lose;
     }
 }
