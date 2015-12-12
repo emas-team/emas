@@ -2,7 +2,7 @@ package emas.agents.services;
 
 
 import emas.agents.Agent;
-import emas.agents.Genotype;
+import emas.agents.genotype.Genotype;
 import emas.operators.IIntersection;
 
 public class CrossoverService implements IService {

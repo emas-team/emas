@@ -1,5 +1,7 @@
 package emas.agents;
 
+import emas.agents.genotype.Genotype;
+
 /**
  *
  */
