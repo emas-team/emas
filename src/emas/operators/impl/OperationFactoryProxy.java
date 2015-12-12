@@ -16,6 +16,7 @@ public class OperationFactoryProxy implements IOperationFactory {
 
 	private IOperationFactory service;
 	private Class<? extends IGenotype> type;
+
 	/**
 	 * Constructor.
 	 * 
@@ -23,7 +24,7 @@ public class OperationFactoryProxy implements IOperationFactory {
 	 *            type of method that is
 	 */
 	public OperationFactoryProxy() {
-		type = retrieveGenotypeClassFromXML();
+		type = getType();
 		if (Genotype.class.equals(getType())) {
 			setService(new GenotypeOperationFactory());
 		} else {
@@ -48,30 +49,32 @@ public class OperationFactoryProxy implements IOperationFactory {
 	public IEvaluation<IGenotype> createEvaluationOp() {
 		return getService().createEvaluationOp();
 	}
-	
+
 	/**
-	 * Retrieves class from xml file.
-	 * Scope 'protected' to be accessed and overriden in tests.
+	 * Retrieves class from xml file. Scope 'protected' to be accessed and
+	 * overriden in tests.
 	 * 
 	 * @return class of genotype
 	 */
-	protected Class<? extends IGenotype> retrieveGenotypeClassFromXML(){
-		//reading from XML
-		return null;
-		
+	protected Class<? extends IGenotype> retrieveGenotypeClassFromXML() {
+		return ParametersHolder.getGenotypeClass();
+
 	}
 
 	/**
 	 * Type getter. F
+	 * 
 	 * @return
 	 */
 	protected Class<? extends IGenotype> getType() {
+		if (type == null) {
+			type = retrieveGenotypeClassFromXML();
+		}
 		return type;
 	}
 
 	/**
-	 * Getter.
-	 * For tests use.
+	 * Getter. For tests use.
 	 * 
 	 * @return current service
 	 */
@@ -82,5 +85,5 @@ public class OperationFactoryProxy implements IOperationFactory {
 	protected void setService(IOperationFactory service) {
 		this.service = service;
 	}
-	
+
 }

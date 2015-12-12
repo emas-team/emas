@@ -1,7 +1,10 @@
 package emas.operators.impl.simple.evaluation;
 
+import java.util.List;
+
 import emas.agents.IGenotype;
 import emas.operators.IEvaluation;
+import emas.operators.impl.ParametersHolder;
 
 /**
  * Implementation of evaluation operation.
@@ -10,9 +13,31 @@ import emas.operators.IEvaluation;
  */
 public class Evaluation implements IEvaluation<IGenotype> {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public double evaluateQuality(IGenotype genotype) {
-		return 0;
+		List<Double> pointsList = null;
+		pointsList = (List<Double>) genotype.getList();
+
+		if (pointsList == null || pointsList.size() == 0) {
+			throw new RuntimeException("Unable to evaluate genotype.");
+		}
+		try {
+			return evalRastriginFunction(pointsList);
+		} catch (ClassCastException e) {
+			throw new IllegalArgumentException("Unexpected genotype class.", e);
+		}
 	}
 
+	private double evalRastriginFunction(List<Double> pointsList) {
+		double a = ParametersHolder.getA();
+		double n = pointsList.size();
+		double sum = a * n;
+		return pointsList.stream().reduce(
+				sum,
+				(acc, value) -> {
+					return acc + Math.pow(value, 2) - a
+							* Math.cos(2 * Math.PI * value);
+				});
+	}
 }

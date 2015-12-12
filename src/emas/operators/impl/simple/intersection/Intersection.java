@@ -19,6 +19,8 @@ public class Intersection implements IIntersection<IGenotype> {
 
 	@Override
 	public IGenotype doIntersection(IGenotype genotype1, IGenotype genotype2) {
+		// Get bits from genotypes list and choose whether we create new point
+		// from gen1 or gen2.
 		return null;
 	}
 
