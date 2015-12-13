@@ -12,6 +12,11 @@ import org.junit.Test;
 import emas.agents.genotype.Genotype;
 import emas.operators.impl.utils.ParametersHolder;
 
+/**
+ * Test class for Evaluation operation.
+ * 
+ * @author Klaudia Balazy, Robert Poparda
+ */
 public class EvaluationTest {
 
 	private Double storedA = null;

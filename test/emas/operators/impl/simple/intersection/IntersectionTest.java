@@ -7,6 +7,11 @@ import org.junit.Test;
 
 import emas.agents.genotype.Genotype;
 
+/**
+ * Test class for Intersection operation.
+ * 
+ * @author Klaudia Balazy, Robert Poparda
+ */
 public class IntersectionTest {
 
 	@Test
