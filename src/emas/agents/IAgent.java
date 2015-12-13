@@ -9,5 +9,5 @@ public interface IAgent {
     IService getService();
     double evaluate();
 
-    int getEnergy();
+    Integer getEnergy();
 }
