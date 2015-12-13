@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ResultWriter {
+    public static final String FILE_NAME = "results.csv";
     private List<Double> generations;
     private static final double WORST_VALUE = 0.;
 
@@ -18,7 +19,7 @@ public class ResultWriter {
     }
 
     public void saveResults() throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter writer = new PrintWriter("results.csv", "UTF-8");
+        PrintWriter writer = new PrintWriter(FILE_NAME, "UTF-8");
         generations.forEach(writer::println);
         writer.close();
     }
