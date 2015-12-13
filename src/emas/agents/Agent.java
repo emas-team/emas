@@ -1,6 +1,7 @@
 package emas.agents;
 
 import emas.agents.genotype.Genotype;
+import emas.agents.services.IService;
 
 /**
  *
@@ -24,8 +25,9 @@ public class Agent implements IAgent{
     }
 
     @Override
-    public void getAction() {
+    public IService getAction() {
 
+        return null;
     }
 
     @Override

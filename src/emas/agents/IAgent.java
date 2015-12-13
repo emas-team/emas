@@ -1,9 +1,11 @@
 package emas.agents;
 
+import emas.agents.services.IService;
+
 /**
  *
  */
 public interface IAgent {
-    void getAction();
+    IService getAction();
     double evaluate();
 }
