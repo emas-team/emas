@@ -70,7 +70,7 @@ public class EmasApp {
     }
 
     private boolean verifyIfAgentIsAlive(IAgent agent) {
-        if (agent.evaluate() == 0) {
+        if (agent.getEnergy() == 0) {
             agents.remove(agent);
             return false;
         }
