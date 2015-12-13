@@ -4,5 +4,6 @@ package emas.agents;
  *
  */
 public interface IAgent {
-    void performAction();
+    void getAction();
+    double evaluate();
 }
