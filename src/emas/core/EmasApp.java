@@ -44,7 +44,7 @@ public class EmasApp {
         Injector injector = Guice.createInjector(new ConfigurationModule());
         Configuration config = injector.getInstance(Configuration.class);
 
-        this.agents_number = config.getIntProperty("agents");
+        this.agents_number = config.getIntProperty("agents_number");
         this.max_generations = config.getIntProperty("max_generations");
     }
 
@@ -60,7 +60,7 @@ public class EmasApp {
         for (Iterator<Agent> iterator = agents.iterator(); iterator.hasNext(); ) {
             Agent agent1 = iterator.next();
             Agent agent2 = iterator.next();
-            Agent newAgent = agent1.getService().doAction();
+            Agent newAgent = agent1.getService().doAction(agent1, agent2);
             verifyIfAgentIsAlive(agent1);
             verifyIfAgentIsAlive(agent2);
             if(verifyIfAgentIsAlive(newAgent)) {
