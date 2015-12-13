@@ -1,27 +1,29 @@
 package emas.agents.genotype;
 
-import emas.agents.IGenotype;
-
+import java.util.LinkedList;
 import java.util.List;
+
+import emas.agents.IGenotype;
 
 public class Genotype implements IGenotype {
 
-    private List geneList;
-    public Genotype(){
+	private List<Object> geneList = new LinkedList<>();
 
-    }
+	public Genotype() {
 
-    public Genotype(List geneList){
+	}
 
-    }
+	public Genotype(List<Object> geneList) {
 
-    @Override
-    public Double evaluate() {
-        return null;
-    }
+	}
 
-    @Override
-    public List getList(){
-        return geneList;
-    }
+	@Override
+	public Double evaluate() {
+		return null;
+	}
+
+	@Override
+	public List<Object> getList() {
+		return geneList;
+	}
 }

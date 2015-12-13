@@ -6,6 +6,8 @@ import java.util.List;
  *
  */
 public interface IGenotype {
-    Double evaluate();
-    List getList();
+
+	Double evaluate();
+
+	List getList();
 }

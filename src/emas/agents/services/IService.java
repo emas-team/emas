@@ -1,7 +1,8 @@
 package emas.agents.services;
 
-/**
- * Created by cragall on 07.12.15.
- */
+
+import emas.agents.Agent;
+
 public interface IService {
+    Agent doAction(Agent agent1, Agent agent2);
 }
