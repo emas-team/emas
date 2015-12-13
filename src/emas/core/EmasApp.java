@@ -2,19 +2,17 @@ package emas.core;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
 import emas.agents.Agent;
-import emas.agents.services.IService;
-import emas.core.utils.ResultWriter;
+import emas.agents.IAgent;
 import emas.core.utils.Configuration;
 import emas.core.utils.ConfigurationModule;
+import emas.core.utils.ResultWriter;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,7 +32,7 @@ public class EmasApp {
             performGenerationActions();
         }
         try {
-            resultWriter.generateDiagram();
+            resultWriter.saveResults();
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
             Logger.getLogger(EmasApp.class.toString()).log(Level.SEVERE, "Could not write results to file.", e);
         }
@@ -60,7 +58,7 @@ public class EmasApp {
         for (Iterator<Agent> iterator = agents.iterator(); iterator.hasNext(); ) {
             Agent agent1 = iterator.next();
             Agent agent2 = iterator.next();
-            Agent newAgent = agent1.getService().doAction();
+            Agent newAgent = agent1.getAction().doAction(agent1, agent2);
             verifyIfAgentIsAlive(agent1);
             verifyIfAgentIsAlive(agent2);
             if(verifyIfAgentIsAlive(newAgent)) {
@@ -71,7 +69,7 @@ public class EmasApp {
         resultWriter.saveGeneration(agents);
     }
 
-    private boolean verifyIfAgentIsAlive(Agent agent) {
+    private boolean verifyIfAgentIsAlive(IAgent agent) {
         if (agent.evaluate() == 0) {
             agents.remove(agent);
             return false;

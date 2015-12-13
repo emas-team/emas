@@ -1,16 +1,11 @@
 package emas.core.utils;
 
 import emas.agents.Agent;
+import emas.agents.IAgent;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,7 +17,7 @@ public class ResultWriter {
         generations = new LinkedList<>();
     }
 
-    public void generateDiagram() throws FileNotFoundException, UnsupportedEncodingException {
+    public void saveResults() throws FileNotFoundException, UnsupportedEncodingException {
         PrintWriter writer = new PrintWriter("results.csv", "UTF-8");
         generations.forEach(writer::println);
         writer.close();
@@ -34,7 +29,7 @@ public class ResultWriter {
 
     public double getBest(List<Agent> agents) {
         double best = WORST_VALUE;
-        for (Agent agent : agents) {
+        for (IAgent agent : agents) {
             if (isBetter(agent.evaluate(), best)) {
                 best = agent.evaluate();
             }
