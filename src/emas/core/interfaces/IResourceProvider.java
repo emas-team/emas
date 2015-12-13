@@ -2,6 +2,6 @@ package emas.core.interfaces;
 
 public interface IResourceProvider {
 
-    //not void - change return type after Collection type decided
-    public void loadData();
+    int getIntProperty(String property);
+    String getStringProperty(String property);
 }
