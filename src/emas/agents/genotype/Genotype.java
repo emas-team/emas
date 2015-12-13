@@ -7,22 +7,23 @@ import emas.agents.IGenotype;
 
 public class Genotype implements IGenotype {
 
-    private List geneList = new LinkedList<>();
-    public Genotype(){
+	private List<Object> geneList = new LinkedList<>();
 
-    }
+	public Genotype() {
 
-    public Genotype(List geneList){
+	}
 
-    }
+	public Genotype(List<Object> geneList) {
 
-    @Override
-    public Double evaluate() {
-        return null;
-    }
+	}
 
-    @Override
-    public List getList(){
-        return geneList;
-    }
+	@Override
+	public Double evaluate() {
+		return null;
+	}
+
+	@Override
+	public List<Object> getList() {
+		return geneList;
+	}
 }

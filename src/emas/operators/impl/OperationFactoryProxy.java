@@ -6,6 +6,7 @@ import emas.agents.genotype.Genotype;
 import emas.operators.IIntersection;
 import emas.operators.IMutation;
 import emas.operators.IOperationFactory;
+import emas.operators.impl.utils.ParametersHolder;
 
 /**
  * Operation factory implementation.

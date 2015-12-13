@@ -1,4 +1,4 @@
-package emas.operators.impl;
+package emas.operators.impl.utils;
 
 import java.util.Comparator;
 

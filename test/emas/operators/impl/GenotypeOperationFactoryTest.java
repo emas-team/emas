@@ -5,9 +5,11 @@ package emas.operators.impl;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+
+import emas.operators.impl.simple.evaluation.Evaluation;
+import emas.operators.impl.simple.intersection.Intersection;
+import emas.operators.impl.simple.mutation.Mutation;
 
 /**
  * @author root
@@ -16,57 +18,36 @@ import org.junit.Test;
 public class GenotypeOperationFactoryTest {
 
 	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	/**
-	 * Test method for {@link emas.operators.impl.GenotypeOperationFactory#GenotypeOperationFactory()}.
-	 */
-	@Test
-	public void testGenotypeOperationFactory() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link emas.operators.impl.GenotypeOperationFactory#GenotypeOperationFactory(emas.operators.IEvaluation)}.
-	 */
-	@Test
-	public void testGenotypeOperationFactoryIEvaluationOfIGenotype() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link emas.operators.impl.GenotypeOperationFactory#createMutationOp()}.
+	 * Test method for
+	 * {@link emas.operators.impl.GenotypeOperationFactory#createMutationOp()}.
 	 */
 	@Test
 	public void testCreateMutationOp() {
-		fail("Not yet implemented");
+		assertEquals("Unexpexted class returned.", Mutation.class,
+				new GenotypeOperationFactory().createMutationOp().getClass());
 	}
 
 	/**
-	 * Test method for {@link emas.operators.impl.GenotypeOperationFactory#createIntersectionOp()}.
+	 * Test method for
+	 * {@link emas.operators.impl.GenotypeOperationFactory#createIntersectionOp()}
+	 * .
 	 */
 	@Test
 	public void testCreateIntersectionOp() {
-		fail("Not yet implemented");
+		assertEquals("Unexpexted class returned.", Intersection.class,
+				new GenotypeOperationFactory().createIntersectionOp()
+						.getClass());
 	}
 
 	/**
-	 * Test method for {@link emas.operators.impl.GenotypeOperationFactory#createEvaluationOp()}.
+	 * Test method for
+	 * {@link emas.operators.impl.GenotypeOperationFactory#createEvaluationOp()}
+	 * .
 	 */
 	@Test
 	public void testCreateEvaluationOp() {
-		fail("Not yet implemented");
+		assertEquals("Unexpexted class returned.", Evaluation.class,
+				new GenotypeOperationFactory().createEvaluationOp().getClass());
 	}
 
 }

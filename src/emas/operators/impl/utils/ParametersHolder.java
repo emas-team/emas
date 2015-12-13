@@ -1,4 +1,4 @@
-package emas.operators.impl;
+package emas.operators.impl.utils;
 
 import emas.agents.IGenotype;
 
@@ -32,6 +32,14 @@ public class ParametersHolder {
 			// zaczytaj z XML'a
 		}
 		return type;
+	}
+
+	public static void setA(Double a) {
+		ParametersHolder.a = a;
+	}
+
+	public static void setType(Class<? extends IGenotype> clazz) {
+		ParametersHolder.type = clazz;
 	}
 
 }

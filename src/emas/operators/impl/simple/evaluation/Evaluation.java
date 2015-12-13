@@ -4,7 +4,7 @@ import java.util.List;
 
 import emas.agents.IGenotype;
 import emas.operators.IEvaluation;
-import emas.operators.impl.ParametersHolder;
+import emas.operators.impl.utils.ParametersHolder;
 
 /**
  * Implementation of evaluation operation.
@@ -20,7 +20,7 @@ public class Evaluation implements IEvaluation<IGenotype> {
 		pointsList = (List<Double>) genotype.getList();
 
 		if (pointsList == null || pointsList.size() == 0) {
-			throw new RuntimeException("Unable to evaluate genotype.");
+			throw new IllegalArgumentException("Unable to evaluate genotype.");
 		}
 		try {
 			return evalRastriginFunction(pointsList);
