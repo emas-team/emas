@@ -12,7 +12,7 @@ import java.util.List;
 public class ResultWriter {
     public static final String FILE_NAME = "results.csv";
     private List<Double> generations;
-    private static final double WORST_VALUE = 0.;
+    private static final double WORST_VALUE = Double.MAX_VALUE;
 
     public ResultWriter() {
         generations = new LinkedList<>();
@@ -39,7 +39,7 @@ public class ResultWriter {
     }
 
     private boolean isBetter(double value, double best) {
-        return value > best;
+        return value < best;
     }
 
 }

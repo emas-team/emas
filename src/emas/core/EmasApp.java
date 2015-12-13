@@ -58,7 +58,7 @@ public class EmasApp {
         for (Iterator<Agent> iterator = agents.iterator(); iterator.hasNext(); ) {
             Agent agent1 = iterator.next();
             Agent agent2 = iterator.next();
-            Agent newAgent = agent1.getAction().doAction(agent1, agent2);
+            Agent newAgent = agent1.getService().doAction(agent1, agent2);
             verifyIfAgentIsAlive(agent1);
             verifyIfAgentIsAlive(agent2);
             if(verifyIfAgentIsAlive(newAgent)) {
