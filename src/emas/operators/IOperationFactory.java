@@ -1,5 +1,7 @@
 package emas.operators;
 
+import emas.agents.IGenotype;
+
 /**
  * Operation factory interface.
  * 
@@ -13,15 +15,8 @@ public interface IOperationFactory {
 	 * 
 	 * @return implementation of mutation operation.
 	 */
-	public IMutation createMutationOp();
 
-	/**
-	 * Creates and returns new object providing implementation of selection
-	 * operation.
-	 * 
-	 * @return implementation of selection operation.
-	 */
-	public ISelection createSelectionOp();
+	public IMutation<IGenotype> createMutationOp();
 
 	/**
 	 * Creates and returns new object providing implementation of intersection
@@ -29,7 +24,7 @@ public interface IOperationFactory {
 	 * 
 	 * @return implementation of intersection operation.
 	 */
-	public IIntersection createIntersectionOp();
+	public IIntersection<IGenotype> createIntersectionOp();
 
 	/**
 	 * Creates and returns new object providing implementation of evaluation
@@ -37,5 +32,5 @@ public interface IOperationFactory {
 	 * 
 	 * @return implementation of evaluation operation.
 	 */
-	public IEvaluation createEvaluationOp();
+	public IEvaluation<IGenotype> createEvaluationOp();
 }
