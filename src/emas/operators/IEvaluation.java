@@ -7,13 +7,11 @@ import emas.agents.IGenotype;
  * 
  * @author Klaudia Bałazy, Robert Poparda
  */
-public interface IEvaluation <T extends IGenotype> {
+public interface IEvaluation<T extends IGenotype> {
 
 	/**
-	 * Evaluates quality of a genotype. The higher value is returned the better
+	 * Evaluates quality of a genotype. The lower value is returned the better
 	 * genotype was evaluated.
-	 * 
-	 * Range of returned value: [0.0;1.0].
 	 * 
 	 * @param genotype
 	 *            genotype to be evaluated
