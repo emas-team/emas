@@ -1,29 +1,25 @@
 package emas.core.utils;
 
 import emas.agents.Agent;
+import emas.agents.IAgent;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ResultWriter {
+    public static final String FILE_NAME = "results.csv";
     private List<Double> generations;
-    private static final double WORST_VALUE = 0.;
+    private static final double WORST_VALUE = Double.MAX_VALUE;
 
     public ResultWriter() {
         generations = new LinkedList<>();
     }
 
-    public void generateDiagram() throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter writer = new PrintWriter("results.csv", "UTF-8");
+    public void saveResults() throws FileNotFoundException, UnsupportedEncodingException {
+        PrintWriter writer = new PrintWriter(FILE_NAME, "UTF-8");
         generations.forEach(writer::println);
         writer.close();
     }
@@ -34,7 +30,7 @@ public class ResultWriter {
 
     public double getBest(List<Agent> agents) {
         double best = WORST_VALUE;
-        for (Agent agent : agents) {
+        for (IAgent agent : agents) {
             if (isBetter(agent.evaluate(), best)) {
                 best = agent.evaluate();
             }
@@ -43,7 +39,7 @@ public class ResultWriter {
     }
 
     private boolean isBetter(double value, double best) {
-        return value > best;
+        return value < best;
     }
 
 }
