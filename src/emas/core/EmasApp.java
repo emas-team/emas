@@ -1,9 +1,13 @@
 package emas.core;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 import emas.agents.Agent;
-import emas.agents.Genotype;
 import emas.agents.services.IService;
 import emas.core.utils.ResultWriter;
+import emas.core.utils.Configuration;
+import emas.core.utils.ConfigurationModule;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
@@ -16,15 +20,17 @@ import java.util.logging.Logger;
 
 public class EmasApp {
 
-    private static final int AGENTS = 10;
-    private static final int MAX_GENERATIONS = 1000;
+    private int agents_number;
+    private int max_generations;
     private List<Agent> agents;
     ResultWriter resultWriter;
 
     public void start() {
+        loadParameters();
         createAgents();
         resultWriter = new ResultWriter();
-        for (int generation = 0; generation < MAX_GENERATIONS; generation++) {
+
+        for (int generation = 0; generation < max_generations; generation++) {
             performGenerationActions();
         }
         try {
@@ -34,9 +40,17 @@ public class EmasApp {
         }
     }
 
+    private void loadParameters() {
+        Injector injector = Guice.createInjector(new ConfigurationModule());
+        Configuration config = injector.getInstance(Configuration.class);
+
+        this.agents_number = config.getIntProperty("agents");
+        this.max_generations = config.getIntProperty("max_generations");
+    }
+
     private void createAgents() {
         agents = new LinkedList<>();
-        for (int i = 0; i < AGENTS; i++) {
+        for (int i = 0; i < agents_number; i++) {
             agents.add(new Agent());
         }
     }
