@@ -42,21 +42,11 @@ public class Mutation implements IMutation<IGenotype> {
 			throw new IllegalArgumentException("Genotype cannot be null.");
 		}
 		List<Double> list = genotype.getList();
-		list.forEach(value -> {
-			if (value < min) {
-				min = value;
-			}
-			if (value > max) {
-				max = value;
-			}
-		});
-
-		range = max - min;
 		
 		//mutating algorithm, is this one optimal?
 		
 		list.forEach(value -> getMutatedList().add(
-				new Double(value + (Math.random() - 0.5) * range)));
+				new Double(value + (Math.random() - 0.5) * Math.PI * 2)));
 
 		synchronized (genotype) {
 			// TODO if the mutated list is worse then the original one, it can
