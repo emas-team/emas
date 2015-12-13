@@ -26,6 +26,9 @@ public class Intersection implements IIntersection<IGenotype> {
 				|| list2.size() == 0) {
 			throw new IllegalArgumentException("Genotype list cannot be empty.");
 		}
+		if (list1.size() != list2.size()) {
+			throw new IllegalArgumentException("Genotypes has unequal length.");
+		}
 
 		IGenotype childGenotype = new Genotype();
 		List<Double> genes = childGenotype.getList();
@@ -36,16 +39,7 @@ public class Intersection implements IIntersection<IGenotype> {
 		while (it1.hasNext() && it2.hasNext()) {
 			genes.add(intersect(it1.next(), it2.next()));
 		}
-		while (it1.hasNext()) {
-			if (Math.random() < 0.5) {
-				genes.add(it1.next());
-			}
-		}
-		while (it2.hasNext()) {
-			if (Math.random() < 0.5) {
-				genes.add(it2.next());
-			}
-		}
+
 		return childGenotype;
 	}
 
