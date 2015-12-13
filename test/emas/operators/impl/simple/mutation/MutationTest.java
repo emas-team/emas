@@ -7,6 +7,11 @@ import org.junit.Test;
 
 import emas.agents.genotype.Genotype;
 
+/**
+ * Test class for Mutation operation.
+ * 
+ * @author Klaudia Balazy, Robert Poparda
+ */
 public class MutationTest {
 
 	@Test
@@ -15,9 +20,7 @@ public class MutationTest {
 		Genotype genotype = createRandomGenotype(genotypeLength);
 		new Mutation().mutate(genotype);
 
-		assertNotNull("Intersection returned null genotype.",
-				genotype.getList());
-		assertFalse("Intersection returned null genotype.", genotype.getList()
+		assertFalse("Mutation cleared genotype list.", genotype.getList()
 				.isEmpty());
 		assertEquals("Mutated genotype has improper length.", genotype
 				.getList().size(), genotypeLength);

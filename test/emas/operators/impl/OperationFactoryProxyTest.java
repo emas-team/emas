@@ -16,6 +16,11 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
+/**
+ * Test class for OperationFactoryProxy.
+ * 
+ * @author Klaudia Balazy, Robert Poparda
+ */
 public class OperationFactoryProxyTest {
 
 	@Rule

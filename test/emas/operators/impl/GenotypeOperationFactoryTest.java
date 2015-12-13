@@ -12,8 +12,9 @@ import emas.operators.impl.simple.intersection.Intersection;
 import emas.operators.impl.simple.mutation.Mutation;
 
 /**
- * @author root
- *
+ * Test class for GenotypeOperationFactory.
+ * 
+ * @author Klaudia Balazy, Robert Poparda
  */
 public class GenotypeOperationFactoryTest {
 
