@@ -57,12 +57,14 @@ public class EmasApp {
         List<Agent> newAgents = new LinkedList<>();
         for (Iterator<Agent> iterator = agents.iterator(); iterator.hasNext(); ) {
             Agent agent1 = iterator.next();
-            Agent agent2 = iterator.next();
-            Agent newAgent = agent1.getService().doAction(agent1, agent2);
-            verifyIfAgentIsAlive(agent1);
-            verifyIfAgentIsAlive(agent2);
-            if(verifyIfAgentIsAlive(newAgent)) {
-                newAgents.add(newAgent);
+            if (iterator.hasNext()) {
+                Agent agent2 = iterator.next();
+                Agent newAgent = agent1.getService().doAction(agent1, agent2);
+                verifyIfAgentIsAlive(agent1);
+                verifyIfAgentIsAlive(agent2);
+                if (verifyIfAgentIsAlive(newAgent)) {
+                    newAgents.add(newAgent);
+                }
             }
         }
         agents.addAll(newAgents);
