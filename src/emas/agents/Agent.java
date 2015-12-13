@@ -1,7 +1,11 @@
 package emas.agents;
 
 import emas.agents.genotype.Genotype;
+import emas.agents.services.CrossoverService;
 import emas.agents.services.IService;
+import emas.agents.services.MeetingService;
+
+import java.util.Random;
 
 /**
  *
@@ -25,9 +29,15 @@ public class Agent implements IAgent{
     }
 
     @Override
-    public IService getAction() {
+    public IService getService() {
+        if(getEnergy() > 80){
+            Random random = new Random();
+            if(random.nextBoolean()){
+                return new CrossoverService();
+            }
 
-        return null;
+        }
+        return new MeetingService();
     }
 
     @Override
@@ -40,9 +50,9 @@ public class Agent implements IAgent{
     }
 
     public int lose() {
-        int lose = (int)(energy * 0.2) + 20;
-        if(lose>energy){
-            lose = energy;
+        int lose = (int)(getEnergy() * 0.2) + 20;
+        if(lose>getEnergy()){
+            lose = getEnergy();
         }
         energy -= lose;
         return lose;
@@ -53,7 +63,7 @@ public class Agent implements IAgent{
     }
 
     public int crossoverEnergy() {
-        int lose = (int)(energy * 0.3);
+        int lose = (int)(getEnergy() * 0.3);
         energy -= lose;
         return lose;
     }
