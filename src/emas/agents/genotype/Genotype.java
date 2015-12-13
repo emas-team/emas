@@ -1,12 +1,13 @@
 package emas.agents.genotype;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import emas.agents.IGenotype;
 
 public class Genotype implements IGenotype {
 
-    private List geneList;
+    private List geneList = new LinkedList<>();
     public Genotype(){
 
     }

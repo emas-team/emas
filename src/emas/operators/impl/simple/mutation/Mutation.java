@@ -52,15 +52,16 @@ public class Mutation implements IMutation<IGenotype> {
 		});
 
 		range = max - min;
-
+		
+		//mutating algorithm, is this one optimal?
+		
 		list.forEach(value -> getMutatedList().add(
 				new Double(value + (Math.random() - 0.5) * range)));
 
 		synchronized (genotype) {
+			// TODO if the mutated list is worse then the original one, it can
+			// be returned - now mutated list is always returned
 			genotype.getList().clear();
-			// TODO should we check here if the list after mutation is evaluated
-			// as better one or not? If mutated list is worse we can leave list
-			// as is.
 			genotype.getList().addAll(getMutatedList());
 		}
 

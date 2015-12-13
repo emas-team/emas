@@ -37,7 +37,7 @@ public class GenotypeOperationFactory implements IOperationFactory {
 
 	@Override
 	public IIntersection<IGenotype> createIntersectionOp() {
-		return new Intersection(internalEvaluation);
+		return new Intersection();
 	}
 
 	@Override
