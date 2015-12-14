@@ -54,17 +54,21 @@ public class Agent implements IAgent{
         if(lose>getEnergy()){
             lose = getEnergy();
         }
-        energy -= lose;
+        setEnergy(getEnergy() - lose);
         return lose;
     }
 
     public void win(int energy) {
-        this.energy += energy;
+        setEnergy(getEnergy() + energy);
     }
 
     public int crossoverEnergy() {
         int lose = (int)(getEnergy() * 0.3);
-        energy -= lose;
+        setEnergy(getEnergy() - lose);
         return lose;
+    }
+
+    private void setEnergy(int energy){
+        this.energy = energy;
     }
 }
