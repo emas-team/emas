@@ -32,6 +32,7 @@ public class Intersection implements IIntersection<IGenotype> {
 
 		IGenotype childGenotype = new Genotype();
 		List<Double> genes = childGenotype.getList();
+		genes.clear();
 
 		Iterator<Double> it1 = list1.iterator();
 		Iterator<Double> it2 = list2.iterator();
