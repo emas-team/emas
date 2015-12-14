@@ -14,9 +14,9 @@ public class Genotype implements IGenotype {
 	private Double fitness = -1.0;
 
 	public Genotype() {
-		geneList  = new LinkedList<>();
+		geneList = new LinkedList<>();
 		Random random = new Random();
-		for(int i = 0; i<2; i++){
+		for (int i = 0; i < 2; i++) {
 			Double d = random.nextDouble();
 			geneList.add(d);
 		}
@@ -28,8 +28,10 @@ public class Genotype implements IGenotype {
 
 	@Override
 	public Double evaluate() {
-		if(fitness == -1){
-			IEvaluation evaluation = (new GenotypeOperationFactory()).createEvaluationOp();
+		if (fitness == -1) {
+			IEvaluation evaluation = (new GenotypeOperationFactory())
+					.createEvaluationOp();
+			fitness = evaluation.evaluateQuality(this);
 		}
 		return fitness;
 	}
