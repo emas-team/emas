@@ -10,20 +10,20 @@ import emas.operators.impl.GenotypeOperationFactory;
 
 public class Genotype implements IGenotype {
 
-	private List<Object> geneList;
+	private List<Double> genes;
 	private Double fitness = -1.0;
 
 	public Genotype() {
-		geneList = new LinkedList<>();
+		genes = new LinkedList<>();
 		Random random = new Random();
 		for (int i = 0; i < 2; i++) {
 			Double d = random.nextDouble();
-			geneList.add(d);
+			genes.add(d);
 		}
 	}
 
-	public Genotype(List<Object> geneList) {
-		this.geneList = geneList;
+	public Genotype(List<Double> genes) {
+		this.genes = genes;
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class Genotype implements IGenotype {
 	}
 
 	@Override
-	public List<Object> getList() {
-		return geneList;
+	public List<Double> getGenes() {
+		return genes;
 	}
 }

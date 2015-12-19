@@ -41,7 +41,7 @@ public class Mutation implements IMutation<IGenotype> {
 		if (genotype == null) {
 			throw new IllegalArgumentException("Genotype cannot be null.");
 		}
-		List<Double> list = genotype.getList();
+		List<Double> list = genotype.getGenes();
 		
 		//mutating algorithm, is this one optimal?
 		
@@ -51,8 +51,8 @@ public class Mutation implements IMutation<IGenotype> {
 		synchronized (genotype) {
 			// TODO if the mutated list is worse then the original one, it can
 			// be returned - now mutated list is always returned
-			genotype.getList().clear();
-			genotype.getList().addAll(getMutatedList());
+			genotype.getGenes().clear();
+			genotype.getGenes().addAll(getMutatedList());
 		}
 
 	}

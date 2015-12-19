@@ -20,10 +20,10 @@ public class MutationTest {
 		Genotype genotype = createRandomGenotype(genotypeLength);
 		new Mutation().mutate(genotype);
 
-		assertFalse("Mutation cleared genotype list.", genotype.getList()
+		assertFalse("Mutation cleared genotype list.", genotype.getGenes()
 				.isEmpty());
 		assertEquals("Mutated genotype has improper length.", genotype
-				.getList().size(), genotypeLength);
+				.getGenes().size(), genotypeLength);
 	}
 
 }

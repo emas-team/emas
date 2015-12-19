@@ -54,7 +54,7 @@ public class ResultWriterTest {
         List<Agent> agentList = new ArrayList<>();
         Agent agent = mock(Agent.class);
         double expected = 10.;
-        when(agent.evaluate()).thenReturn(expected);
+        when(agent.getFitness()).thenReturn(expected);
         agentList.add(agent);
 
         resultWriter.saveGeneration(agentList);
@@ -75,8 +75,8 @@ public class ResultWriterTest {
         double value2 = 5.76;
         Agent agent1 = mock(Agent.class);
         Agent agent2 = mock(Agent.class);
-        when(agent1.evaluate()).thenReturn(value1);
-        when(agent2.evaluate()).thenReturn(value2);
+        when(agent1.getFitness()).thenReturn(value1);
+        when(agent2.getFitness()).thenReturn(value2);
         agentList.add(agent1);
         agentList.add(agent2);
 

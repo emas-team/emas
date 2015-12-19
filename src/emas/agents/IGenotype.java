@@ -9,5 +9,5 @@ public interface IGenotype {
 
 	Double evaluate();
 
-	List getList();
+	List getGenes();
 }

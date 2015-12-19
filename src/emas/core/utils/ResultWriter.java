@@ -1,7 +1,6 @@
 package emas.core.utils;
 
 import emas.agents.Agent;
-import emas.agents.IAgent;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -30,9 +29,9 @@ public class ResultWriter {
 
     public double getBest(List<Agent> agents) {
         double best = WORST_VALUE;
-        for (IAgent agent : agents) {
-            if (isBetter(agent.evaluate(), best)) {
-                best = agent.evaluate();
+        for (Agent agent : agents) {
+            if (isBetter(agent.getFitness(), best)) {
+                best = agent.getFitness();
             }
         }
         return best;

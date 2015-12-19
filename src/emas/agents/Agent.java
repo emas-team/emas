@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  *
  */
-public class Agent implements IAgent{
+public class Agent{
     private Genotype genotype;
     private Integer energy;
 
@@ -28,7 +28,6 @@ public class Agent implements IAgent{
         return genotype;
     }
 
-    @Override
     public IService getService() {
         if(getEnergy() > 80){
             Random random = new Random();
@@ -40,8 +39,7 @@ public class Agent implements IAgent{
         return new MeetingService();
     }
 
-    @Override
-    public double evaluate() {
+    public double getFitness() {
         return getGenotype().evaluate();
     }
 
@@ -50,10 +48,7 @@ public class Agent implements IAgent{
     }
 
     public int lose() {
-        int lose = (int)(getEnergy() * 0.2) + 20;
-        if(lose>getEnergy()){
-            lose = getEnergy();
-        }
+        int lose =  (new Double(Math.ceil(getEnergy() * 0.5))).intValue();
         setEnergy(getEnergy() - lose);
         return lose;
     }
@@ -63,7 +58,7 @@ public class Agent implements IAgent{
     }
 
     public int crossoverEnergy() {
-        int lose = (int)(getEnergy() * 0.3);
+        int lose = (new Double(Math.ceil(getEnergy() * 0.5))).intValue();
         setEnergy(getEnergy() - lose);
         return lose;
     }

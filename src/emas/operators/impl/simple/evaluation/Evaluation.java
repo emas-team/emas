@@ -17,7 +17,7 @@ public class Evaluation implements IEvaluation<IGenotype> {
 	@Override
 	public double evaluateQuality(IGenotype genotype) {
 		List<Double> pointsList = null;
-		pointsList = (List<Double>) genotype.getList();
+		pointsList = (List<Double>) genotype.getGenes();
 
 		if (pointsList == null || pointsList.size() == 0) {
 			throw new IllegalArgumentException("Unable to evaluate genotype.");

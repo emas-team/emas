@@ -23,7 +23,7 @@ public class IntersectionTest {
 				genotype1, genotype2);
 
 		assertNotNull("Intersection returned null genotype.", child);
-		assertEquals("Child genotype has improper length.", child.getList()
+		assertEquals("Child genotype has improper length.", child.getGenes()
 				.size(), genotypeLength);
 	}
 
