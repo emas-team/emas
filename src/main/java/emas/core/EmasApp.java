@@ -3,13 +3,17 @@ package emas.core;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import emas.agents.Agent;
+import emas.agents.Island;
 import emas.agents.services.IService;
+import emas.agents.services.MigrationService;
+import emas.agents.services.ServiceEnum;
 import emas.core.utils.Configuration;
 import emas.core.utils.ConfigurationModule;
 import emas.core.utils.ResultWriter;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -58,13 +62,14 @@ public class EmasApp {
 
     private void performGenerationActions() {
         for (Island island : islands) {
-            while (island.hasNext()) {
-                Agent agent1 = island.next();
+            Iterator<Agent> agentIterator = island.iterator();
+            while (agentIterator.hasNext()) {
+                Agent agent1 = agentIterator.next();
                 IService service = agent1.getService();
-                if (service.getType() == service.MIGRATE) {
-                    (MigrationService) service.migrate(agent1, islands);
-                } else if (island.hasNext()) {
-                    Agent agent2 = iterator.next();
+                if (service.getServiceType() == ServiceEnum.MIGRATIONSERVICE) {
+                    ((MigrationService)service).migrate(agent1, island, islands);
+                } else if (agentIterator.hasNext()) {
+                    Agent agent2 = agentIterator.next();
                     Agent newAgent = service.doAction(agent1, agent2);
                     if (newAgent.getEnergy() != 0) {
                         island.addAgent(newAgent);
