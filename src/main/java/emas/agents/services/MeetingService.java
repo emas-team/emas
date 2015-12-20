@@ -15,4 +15,9 @@ public class MeetingService implements IService{
         }
         return new Agent(null, 0);
     }
+
+    @Override
+    public ServiceEnum getServiceType() {
+        return ServiceEnum.MEETINGSERVICE;
+    }
 }
