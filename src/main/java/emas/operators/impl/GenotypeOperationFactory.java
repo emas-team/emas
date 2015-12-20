@@ -30,16 +30,25 @@ public class GenotypeOperationFactory implements IOperationFactory {
 		this.internalEvaluation = evaluation;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public IMutation<IGenotype> createMutationOp() {
 		return new Mutation(internalEvaluation);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public IIntersection<IGenotype> createIntersectionOp() {
 		return new Intersection();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public IEvaluation<IGenotype> createEvaluationOp() {
 		return new Evaluation();

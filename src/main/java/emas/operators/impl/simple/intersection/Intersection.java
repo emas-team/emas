@@ -5,7 +5,6 @@ import java.util.List;
 
 import emas.agents.IGenotype;
 import emas.agents.genotype.Genotype;
-import emas.operators.IEvaluation;
 import emas.operators.IIntersection;
 
 /**
@@ -20,8 +19,8 @@ public class Intersection implements IIntersection<IGenotype> {
 		if (genotype1 == null || genotype2 == null) {
 			throw new IllegalArgumentException("Genotype cannot be null.");
 		}
-		List<Double> list1 = genotype1.getList();
-		List<Double> list2 = genotype1.getList();
+		List<Double> list1 = genotype1.getGenes();
+		List<Double> list2 = genotype1.getGenes();
 		if (list1 == null || list2 == null || list1.size() == 0
 				|| list2.size() == 0) {
 			throw new IllegalArgumentException("Genotype list cannot be empty.");
@@ -31,8 +30,7 @@ public class Intersection implements IIntersection<IGenotype> {
 		}
 
 		IGenotype childGenotype = new Genotype();
-		List<Double> genes = childGenotype.getList();
-		genes.clear();
+		List<Double> genes = childGenotype.getGenes();
 
 		Iterator<Double> it1 = list1.iterator();
 		Iterator<Double> it2 = list2.iterator();

@@ -20,9 +20,6 @@ public class OperationFactoryProxy implements IOperationFactory {
 
 	/**
 	 * Constructor.
-	 * 
-	 * @param type
-	 *            type of method that is
 	 */
 	public OperationFactoryProxy() {
 		type = getType();
@@ -36,16 +33,25 @@ public class OperationFactoryProxy implements IOperationFactory {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public IMutation<IGenotype> createMutationOp() {
 		return getService().createMutationOp();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public IIntersection<IGenotype> createIntersectionOp() {
 		return getService().createIntersectionOp();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public IEvaluation<IGenotype> createEvaluationOp() {
 		return getService().createEvaluationOp();
@@ -63,7 +69,7 @@ public class OperationFactoryProxy implements IOperationFactory {
 	}
 
 	/**
-	 * Type getter. F
+	 * Type getter.
 	 * 
 	 * @return
 	 */

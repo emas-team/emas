@@ -13,6 +13,9 @@ import emas.operators.impl.utils.ParametersHolder;
  */
 public class Evaluation implements IEvaluation<IGenotype> {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public double evaluateQuality(IGenotype genotype) {

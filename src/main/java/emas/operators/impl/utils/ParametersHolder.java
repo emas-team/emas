@@ -7,7 +7,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import emas.agents.IGenotype;
-import emas.agents.genotype.Genotype;
 import emas.core.utils.Configuration;
 import emas.core.utils.ConfigurationModule;
 
@@ -20,7 +19,7 @@ import emas.core.utils.ConfigurationModule;
 public class ParametersHolder {
 	private static final ParametersHolder INSTANCE = new ParametersHolder();
 	private static Double a;
-	private static Class<? extends IGenotype> type;
+	private static Class<IGenotype> type;
 	private Configuration config;
 
 	@SuppressWarnings("unchecked")
@@ -32,7 +31,7 @@ public class ParametersHolder {
 				.getStringProperty("rastrigin_A"));
 
 		try {
-			ParametersHolder.type = (Class<? extends IGenotype>) Class
+			ParametersHolder.type = (Class<IGenotype>) Class
 					.forName(config.getStringProperty("genotype_class"));
 		} catch (ClassNotFoundException e) {
 			Logger.getAnonymousLogger().log(Level.SEVERE,
@@ -48,7 +47,7 @@ public class ParametersHolder {
 		return a;
 	}
 
-	public static Class<? extends IGenotype> getGenotypeClass() {
+	public static Class<IGenotype> getGenotypeClass() {
 		return type;
 	}
 
@@ -56,7 +55,7 @@ public class ParametersHolder {
 		ParametersHolder.a = a;
 	}
 
-	public static void setType(Class<? extends IGenotype> clazz) {
+	public static void setType(Class<IGenotype> clazz) {
 		ParametersHolder.type = clazz;
 	}
 

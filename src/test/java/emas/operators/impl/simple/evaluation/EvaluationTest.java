@@ -36,12 +36,11 @@ public class EvaluationTest {
 	@Test
 	public void testEvaluateQuality() {
 		Genotype genotype = new Genotype();
+		genotype.getGenes().clear();
 
-		genotype.getList().clear();
-
-		genotype.getList().add(1.0);
-		genotype.getList().add(2.0);
-		genotype.getList().add(3.0);
+		genotype.getGenes().add(1.0);
+		genotype.getGenes().add(2.0);
+		genotype.getGenes().add(3.0);
 
 		Evaluation evaluation = new Evaluation();
 
@@ -52,16 +51,8 @@ public class EvaluationTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testEvaluateQualityWhithEmptyList() {
 		Genotype genotype = new Genotype();
-		genotype.getList().clear();
+		genotype.getGenes().clear();
 
-		Evaluation evaluation = new Evaluation();
-		evaluation.evaluateQuality(genotype);
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testEvaluateQualityWithBadObjects() {
-		Genotype genotype = new Genotype();
-		genotype.getList().add("Bad object");
 		Evaluation evaluation = new Evaluation();
 		evaluation.evaluateQuality(genotype);
 	}

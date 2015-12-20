@@ -30,11 +30,15 @@ public class Mutation implements IMutation<IGenotype> {
 
 	/**
 	 * Constructor.
+	 * @param evaluation evaluation
 	 */
 	public Mutation(IEvaluation<IGenotype> evaluation) {
 		this.evaluation = evaluation;
 	}
-
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void mutate(IGenotype genotype) {
