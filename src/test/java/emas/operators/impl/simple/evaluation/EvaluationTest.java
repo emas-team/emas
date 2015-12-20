@@ -36,7 +36,8 @@ public class EvaluationTest {
 	@Test
 	public void testEvaluateQuality() {
 		Genotype genotype = new Genotype();
-
+		genotype.getGenes().clear();
+		
 		genotype.getGenes().add(1.0);
 		genotype.getGenes().add(2.0);
 		genotype.getGenes().add(3.0);
@@ -50,18 +51,11 @@ public class EvaluationTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testEvaluateQualityWhithEmptyList() {
 		Genotype genotype = new Genotype();
+		genotype.getGenes().clear();
 
 		Evaluation evaluation = new Evaluation();
 		evaluation.evaluateQuality(genotype);
 	}
-
-//	@Test(expected = IllegalArgumentException.class)
-//	public void testEvaluateQualityWithBadObjects() {
-//		Genotype genotype = new Genotype();
-//		genotype.getGenes().add("Bad object");
-//		Evaluation evaluation = new Evaluation();
-//		evaluation.evaluateQuality(genotype);
-//	}
 
 	@After
 	public void tearDown() {

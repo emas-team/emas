@@ -24,7 +24,8 @@ import org.mockito.Mockito;
 public class OperationFactoryProxyTest {
 
 	@Rule
-	public final ExpectedException exception = ExpectedException.none();
+	private final ExpectedException exception = ExpectedException.none();
+	private static final String BAD_OP_MSG = "Bad operation object returned.";
 
 	/**
 	 * Asserts if no exceptions are thrown.
@@ -43,7 +44,7 @@ public class OperationFactoryProxyTest {
 		IMutation<IGenotype> result = ofp.createMutationOp();
 
 		// then
-		assertEquals("Bad operation object returned.", operation, result);
+		assertEquals(BAD_OP_MSG, operation, result);
 	}
 
 	@Test
@@ -60,7 +61,7 @@ public class OperationFactoryProxyTest {
 		IIntersection<IGenotype> result = ofp.createIntersectionOp();
 
 		// then
-		assertEquals("Bad operation object returned.", operation, result);
+		assertEquals(BAD_OP_MSG, operation, result);
 	}
 
 	@Test
@@ -77,7 +78,7 @@ public class OperationFactoryProxyTest {
 		IEvaluation<IGenotype> result = ofp.createEvaluationOp();
 
 		// then
-		assertEquals("Bad operation object returned.", operation, result);
+		assertEquals(BAD_OP_MSG, operation, result);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
