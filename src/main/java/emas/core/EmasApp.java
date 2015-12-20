@@ -45,7 +45,7 @@ public class EmasApp {
         Injector injector = Guice.createInjector(new ConfigurationModule());
         Configuration config = injector.getInstance(Configuration.class);
 
-        this.islands_number = config.getIntProperty("agents_number");
+        this.islands_number = config.getIntProperty("islands_number");
         this.max_generations = config.getIntProperty("max_generations");
     }
 
