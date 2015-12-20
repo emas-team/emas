@@ -1,4 +1,4 @@
-package emas.core.utils;
+/*package emas.core.utils;
 
 import emas.agents.Agent;
 import org.junit.Before;
@@ -47,9 +47,9 @@ public class ResultWriterTest {
         }
         assertEquals(generations.get(0), actual.get(0));
         assertEquals(generations.get(1), actual.get(1));
-    }
+    }*/
 
-    @Test
+ /*   @Test
     public void testSaveGeneration() throws Exception {
         List<Agent> agentList = new ArrayList<>();
         Agent agent = mock(Agent.class);
@@ -82,4 +82,4 @@ public class ResultWriterTest {
 
         assertEquals(5.76, resultWriter.getBest(agentList), 0.01);
     }
-}
+}*/

@@ -37,7 +37,7 @@ public class EvaluationTest {
 	public void testEvaluateQuality() {
 		Genotype genotype = new Genotype();
 		genotype.getGenes().clear();
-		
+
 		genotype.getGenes().add(1.0);
 		genotype.getGenes().add(2.0);
 		genotype.getGenes().add(3.0);

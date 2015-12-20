@@ -1,10 +1,12 @@
 package emas.core.utils;
 
 import emas.agents.Agent;
+import emas.agents.Island;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,15 +25,19 @@ public class ResultWriter {
         writer.close();
     }
 
-    public void saveGeneration(List<Agent> agents) {
-        generations.add(getBest(agents));
+    public void saveGeneration(List<Island> islands) {
+        generations.add(getBest(islands));
     }
 
-    public double getBest(List<Agent> agents) {
+    public double getBest(List<Island> islands) {
         double best = WORST_VALUE;
-        for (Agent agent : agents) {
-            if (isBetter(agent.getFitness(), best)) {
-                best = agent.getFitness();
+        for (Island island : islands) {
+            Iterator<Agent> agentIterator = island.iterator();
+            while(agentIterator.hasNext()) {
+                Agent agent = agentIterator.next();
+                if (isBetter(agent.getFitness(), best)) {
+                    best = agent.getFitness();
+                }
             }
         }
         return best;
