@@ -19,12 +19,9 @@ import java.util.logging.Logger;
 
 public class EmasApp {
 
-    private int agents_number;
     private int max_generations;
     private int islands_number;
     private List<Island> islands;
-    private List<Agent> agents;
-    private List<Agent> agentsToDelete;
     private ResultWriter resultWriter;
 
     public void start() {
@@ -69,23 +66,13 @@ public class EmasApp {
                 } else if (island.hasNext()) {
                     Agent agent2 = iterator.next();
                     Agent newAgent = service.doAction(agent1, agent2);
-//                        verifyIfAgentIsAlive(agent1);
-//                        verifyIfAgentIsAlive(agent2);
-                    if (verifyIfAgentIsAlive(newAgent)) {
+                    if (newAgent.getEnergy() != 0) {
                         island.addAgent(newAgent);
                     }
                 }
             }
             island.removeDeadAgents();
         }
-        resultWriter.saveGeneration(agents);
-    }
-
-    private boolean verifyIfAgentIsAlive(Agent agent) {
-        if (agent.getEnergy() == 0) {
-            agentsToDelete.add(agent);
-            return false;
-        }
-        return true;
+        resultWriter.saveGeneration(islands);
     }
 }
