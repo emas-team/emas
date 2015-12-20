@@ -23,15 +23,18 @@ public class ResultWriter {
         writer.close();
     }
 
-    public void saveGeneration(List<Agent> agents) {
-        generations.add(getBest(agents));
+    public void saveGeneration(List<Island> islands) {
+        generations.add(getBest(islands));
     }
 
-    public double getBest(List<Agent> agents) {
+    public double getBest(List<Island> agents) {
         double best = WORST_VALUE;
-        for (Agent agent : agents) {
-            if (isBetter(agent.getFitness(), best)) {
-                best = agent.getFitness();
+        for (Island island : islands) {
+            while(island.hasNext()) {
+                Agent agent = island.next();
+                if (isBetter(agent.getFitness(), best)) {
+                    best = agent.getFitness();
+                }
             }
         }
         return best;
