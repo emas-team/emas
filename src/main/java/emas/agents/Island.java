@@ -12,8 +12,9 @@ import java.util.LinkedList;
 
 
 public class Island implements Iterable<Agent> {
-    private List<Agent> inhabitants;
-    List<Agent> deadAgents = new LinkedList<>();
+    private final List<Agent> inhabitants = new LinkedList<>();
+    private final List<Agent> deadAgents = new LinkedList<>();
+    private final List<Agent> newAgents = new LinkedList<>();
 
     public Island(){
         Injector injector = Guice.createInjector(new ConfigurationModule());
@@ -24,7 +25,6 @@ public class Island implements Iterable<Agent> {
     }
 
     private void initializeAgents(int quantity){
-        inhabitants = new LinkedList<>();
         for(int i = 0; i<quantity; i++){
             inhabitants.add(new Agent());
         }
@@ -36,20 +36,34 @@ public class Island implements Iterable<Agent> {
     }
 
     public void addAgent(Agent agent){
-        inhabitants.add(agent);
+        newAgents.add(agent);
     }
 
-    public void removeDeadAgents(){
+    private void addNewAgents(){
+        for(Agent agent: newAgents){
+            inhabitants.add(agent);
+        }
+    }
 
-        for (Agent agent:   inhabitants) {
+    private void findDeadAgents(){
+        for (Agent agent:inhabitants) {
             if(agent.getEnergy() == 0){
                 deadAgents.add(agent);
             }
         }
+    }
+
+    private void clearDeadAgents(){
         for (Agent agent: deadAgents){
             inhabitants.remove(agent);
         }
         deadAgents.clear();
+    }
+
+    public void removeDeadAgents(){
+        addNewAgents();
+        findDeadAgents();
+        clearDeadAgents();
         Collections.shuffle(inhabitants);
     }
 
