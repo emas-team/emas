@@ -15,11 +15,8 @@ import emas.operators.impl.simple.evaluation.Evaluation;
  */
 public class Mutation implements IMutation<IGenotype> {
 
-	IEvaluation<IGenotype> evaluation;
+	// private IEvaluation<IGenotype> evaluation;
 	private List<Double> mutatedList = new LinkedList<Double>();
-	Double max = Double.NEGATIVE_INFINITY;
-	Double min = Double.POSITIVE_INFINITY;
-	Double range;
 
 	/**
 	 * Default constructor. Sets the default evaluation method.
@@ -30,12 +27,14 @@ public class Mutation implements IMutation<IGenotype> {
 
 	/**
 	 * Constructor.
-	 * @param evaluation evaluation
+	 * 
+	 * @param evaluation
+	 *            evaluation
 	 */
 	public Mutation(IEvaluation<IGenotype> evaluation) {
-		this.evaluation = evaluation;
+		// this.evaluation = evaluation;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -46,9 +45,7 @@ public class Mutation implements IMutation<IGenotype> {
 			throw new IllegalArgumentException("Genotype cannot be null.");
 		}
 		List<Double> list = genotype.getGenes();
-		
-		//mutating algorithm, is this one optimal?
-		
+
 		list.forEach(value -> getMutatedList().add(
 				new Double(value + (Math.random() - 0.5) * Math.PI * 2)));
 

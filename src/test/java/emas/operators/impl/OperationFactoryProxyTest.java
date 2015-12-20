@@ -24,7 +24,7 @@ import org.mockito.Mockito;
 public class OperationFactoryProxyTest {
 
 	@Rule
-	private final ExpectedException exception = ExpectedException.none();
+	public final ExpectedException exception = ExpectedException.none();
 	private static final String BAD_OP_MSG = "Bad operation object returned.";
 
 	/**
