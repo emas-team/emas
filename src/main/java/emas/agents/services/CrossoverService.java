@@ -19,4 +19,9 @@ public class CrossoverService implements IService {
         int energy = agent1.crossoverEnergy() + agent2.crossoverEnergy();
         return new Agent(newGenotype, energy);
     }
+
+    @Override
+    public ServiceEnum getServiceType() {
+        return ServiceEnum.CROSSOVERSERVICE;
+    }
 }
