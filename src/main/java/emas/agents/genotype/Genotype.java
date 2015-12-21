@@ -4,20 +4,28 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import emas.agents.IGenotype;
+import emas.core.utils.Configuration;
+import emas.core.utils.ConfigurationModule;
 import emas.operators.IEvaluation;
 import emas.operators.impl.GenotypeOperationFactory;
 
 public class Genotype implements IGenotype {
 
-	private List<Double> genes;
-	private Double fitness = -1.0;
+	private final List<Double> genes;
+	private Double fitness;
 
 	public Genotype() {
+		Injector injector = Guice.createInjector(new ConfigurationModule());
+		Configuration config = injector.getInstance(Configuration.class);
+
+		int maxInit = config.getIntProperty("max_init");
 		genes = new LinkedList<>();
 		Random random = new Random();
 		for (int i = 0; i < 2; i++) {
-			Double d = random.nextDouble();
+			Double d = random.nextDouble() * maxInit;
 			genes.add(d);
 		}
 	}
@@ -28,7 +36,7 @@ public class Genotype implements IGenotype {
 
 	@Override
 	public Double evaluate() {
-		if (fitness == -1) {
+		if (fitness == null) {
 			IEvaluation evaluation = (new GenotypeOperationFactory())
 					.createEvaluationOp();
 			fitness = evaluation.evaluateQuality(this);
