@@ -11,13 +11,14 @@ import emas.operators.impl.GenotypeOperationFactory;
 public class Genotype implements IGenotype {
 
 	private List<Double> genes;
-	private Double fitness = -1.0;
+	private Double fitness = null;
 
 	public Genotype() {
 		genes = new LinkedList<>();
 		Random random = new Random();
 		for (int i = 0; i < 2; i++) {
-			Double d = random.nextDouble();
+			// TODO paramtetrize range
+			Double d = random.nextDouble() * 1000;
 			genes.add(d);
 		}
 	}
@@ -28,7 +29,7 @@ public class Genotype implements IGenotype {
 
 	@Override
 	public Double evaluate() {
-		if (fitness == -1) {
+		if (fitness == null) {
 			IEvaluation evaluation = (new GenotypeOperationFactory())
 					.createEvaluationOp();
 			fitness = evaluation.evaluateQuality(this);

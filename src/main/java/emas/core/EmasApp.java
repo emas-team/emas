@@ -13,10 +13,8 @@ import emas.core.utils.ResultWriter;
 
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +40,7 @@ public class EmasApp {
             Logger.getLogger(EmasApp.class.toString()).log(Level.SEVERE,
                     "Could not write results to file.", e);
         }
-        System.out.println("Done. See results in results csv file.");
+        Logger.getAnonymousLogger().info("Done. See results in results csv file.");
     }
 
     private void loadParameters() {

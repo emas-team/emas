@@ -9,42 +9,45 @@ import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class ResultWriter {
-    public static final String FILE_NAME = "results.csv";
-    private List<Double> generations;
-    private static final double WORST_VALUE = Double.MAX_VALUE;
+	public static final String FILE_NAME = "results.csv";
+	private List<Double> generations;
+	private static final double WORST_VALUE = Double.MAX_VALUE;
 
-    public ResultWriter() {
-        generations = new LinkedList<>();
-    }
+	public ResultWriter() {
+		generations = new LinkedList<>();
+	}
 
-    public void saveResults() throws FileNotFoundException, UnsupportedEncodingException {
-        PrintWriter writer = new PrintWriter(FILE_NAME, "UTF-8");
-        generations.forEach(writer::println);
-        writer.close();
-    }
+	public void saveResults() throws FileNotFoundException,
+			UnsupportedEncodingException {
+		PrintWriter writer = new PrintWriter(FILE_NAME, "UTF-8");
+		generations.forEach(writer::println);
+		writer.close();
+	}
 
-    public void saveGeneration(List<Island> islands) {
-        generations.add(getBest(islands));
-    }
+	public void saveGeneration(List<Island> islands) {
+		generations.add(getBest(islands));
+		Logger.getAnonymousLogger().info("Generation " + generations.size());
+	}
 
-    public double getBest(List<Island> islands) {
-        double best = WORST_VALUE;
-        for (Island island : islands) {
-            Iterator<Agent> agentIterator = island.iterator();
-            while(agentIterator.hasNext()) {
-                Agent agent = agentIterator.next();
-                if (isBetter(agent.getFitness(), best)) {
-                    best = agent.getFitness();
-                }
-            }
-        }
-        return best;
-    }
+	public double getBest(List<Island> islands) {
+		double best = WORST_VALUE;
+		for (Island island : islands) {
+			Iterator<Agent> agentIterator = island.iterator();
+			while (agentIterator.hasNext()) {
+				Agent agent = agentIterator.next();
+				if (isBetter(agent.getFitness(), best)) {
+					best = agent.getFitness();
+				}
+			}
+		}
+		return best;
+	}
 
-    private boolean isBetter(double value, double best) {
-        return value < best;
-    }
+	private boolean isBetter(double value, double best) {
+		return value < best;
+	}
 
 }

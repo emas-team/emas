@@ -44,18 +44,22 @@ public class Mutation implements IMutation<IGenotype> {
 		if (genotype == null) {
 			throw new IllegalArgumentException("Genotype cannot be null.");
 		}
-		List<Double> list = genotype.getGenes();
 
+		List<Double> list = genotype.getGenes();
 		list.forEach(value -> getMutatedList().add(
-				new Double(value + (Math.random() - 0.5) * Math.PI * 2)));
+				new Double(value + (Math.random() - 0.5) * value)));
+
+		updateGenotype(genotype);
+	}
+
+	private void updateGenotype(IGenotype genotype) {
+		// TODO if the mutated list is worse then the original one, it can
+		// be returned - now mutated list is always returned
 
 		synchronized (genotype) {
-			// TODO if the mutated list is worse then the original one, it can
-			// be returned - now mutated list is always returned
 			genotype.getGenes().clear();
 			genotype.getGenes().addAll(getMutatedList());
 		}
-
 	}
 
 	private List<Double> getMutatedList() {
