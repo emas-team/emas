@@ -3,6 +3,7 @@ package emas.agents;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import emas.agents.genotype.Genotype;
+import emas.agents.genotype.GenotypeFactory;
 import emas.agents.services.CrossoverService;
 import emas.agents.services.IService;
 import emas.agents.services.MeetingService;
@@ -16,7 +17,7 @@ import java.util.Random;
  *
  */
 public class Agent{
-    private final Genotype genotype;
+    private final IGenotype genotype;
     private Integer energy;
     private Double fitness;
 
@@ -26,7 +27,7 @@ public class Agent{
     private static double migrationProbability;
 
     public Agent(){
-        this.genotype = new Genotype();
+        this.genotype = GenotypeFactory.createGenotype();
         this.energy = 100;
 
         loadConfig();
@@ -51,7 +52,7 @@ public class Agent{
         }
     }
 
-    public Genotype getGenotype() {
+    public IGenotype getGenotype() {
         return genotype;
     }
 
