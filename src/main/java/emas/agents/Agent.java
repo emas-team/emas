@@ -19,7 +19,6 @@ import java.util.Random;
 public class Agent{
     private final IGenotype genotype;
     private Integer energy;
-    private Double fitness;
 
     private static Integer minCrossoverEnergy;
     private static Integer minMigrationEnergy;
@@ -59,11 +58,12 @@ public class Agent{
     public IService getService() {
         Random random = new Random();
         double luckyNumber = random.nextDouble();
-        // TODO: minMigrationEnergy
-        if(minCrossoverEnergy<energy) {
-            if (crossoverProbability > luckyNumber) {
+        if (crossoverProbability > luckyNumber) {
+            if(minCrossoverEnergy<energy) {
                 return new CrossoverService();
-            } else if (crossoverProbability + migrationProbability > luckyNumber) {
+            }
+        } else if (crossoverProbability + migrationProbability > luckyNumber) {
+            if(minMigrationEnergy<energy) {
                 return new MigrationService();
             }
         }
