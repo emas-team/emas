@@ -8,7 +8,6 @@ import emas.operators.IMutation;
 import emas.operators.impl.GenotypeOperationFactory;
 
 public class CrossoverService implements IService {
-    public CrossoverService(){}
     @Override
     public Agent doAction(Agent agent1, Agent agent2) {
         GenotypeOperationFactory factory = new GenotypeOperationFactory();

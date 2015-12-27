@@ -13,39 +13,38 @@ import emas.operators.IEvaluation;
 import emas.operators.impl.GenotypeOperationFactory;
 
 public class Genotype implements IGenotype {
+    private final List<Double> genes;
+    private Double fitness;
 
-	private final List<Double> genes;
-	private Double fitness;
+    public Genotype() {
+        Injector injector = Guice.createInjector(new ConfigurationModule());
+        Configuration config = injector.getInstance(Configuration.class);
 
-	public Genotype() {
-		Injector injector = Guice.createInjector(new ConfigurationModule());
-		Configuration config = injector.getInstance(Configuration.class);
+        int maxInit = config.getIntProperty("max_init");
+        genes = new LinkedList<>();
+        Random random = new Random();
+        for (int i = 0; i < 2; i++) {
+            Double d = random.nextDouble() * maxInit;
+            genes.add(d);
+        }
+    }
 
-		int maxInit = config.getIntProperty("max_init");
-		genes = new LinkedList<>();
-		Random random = new Random();
-		for (int i = 0; i < 2; i++) {
-			Double d = random.nextDouble() * maxInit;
-			genes.add(d);
-		}
-	}
+    public Genotype(List<Double> genes) {
+        this.genes = genes;
+    }
 
-	public Genotype(List<Double> genes) {
-		this.genes = genes;
-	}
+    @Override
+    public Double evaluate() {
+        if (fitness == null) {
+            IEvaluation evaluation = (new GenotypeOperationFactory())
+                    .createEvaluationOp();
+            fitness = evaluation.evaluateQuality(this);
+        }
+        return fitness;
+    }
 
-	@Override
-	public Double evaluate() {
-		if (fitness == null) {
-			IEvaluation evaluation = (new GenotypeOperationFactory())
-					.createEvaluationOp();
-			fitness = evaluation.evaluateQuality(this);
-		}
-		return fitness;
-	}
-
-	@Override
-	public List<Double> getGenes() {
-		return genes;
-	}
+    @Override
+    public List<Double> getGenes() {
+        return genes;
+    }
 }

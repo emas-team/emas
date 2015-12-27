@@ -13,10 +13,7 @@ import emas.core.utils.ConfigurationModule;
 
 import java.util.Random;
 
-/**
- *
- */
-public class Agent{
+public class Agent {
     private final IGenotype genotype;
     private Integer energy;
 
@@ -25,30 +22,24 @@ public class Agent{
     private static double crossoverProbability;
     private static double migrationProbability;
 
-    public Agent(){
+    static {
+        Injector injector = Guice.createInjector(new ConfigurationModule());
+        Configuration config = injector.getInstance(Configuration.class);
+
+        minCrossoverEnergy = config.getIntProperty("min_crossover_energy");
+        minMigrationEnergy = config.getIntProperty("min_migration_energy");
+        crossoverProbability = config.getIntProperty("crossover_probability") * 1.0 / 100;
+        migrationProbability = config.getIntProperty("migration_probability") * 1.0 / 100;
+    }
+
+    public Agent() {
         this.genotype = GenotypeFactory.createGenotype();
         this.energy = 100;
-
-        loadConfig();
     }
 
-    public Agent(Genotype genotype, Integer energy){
+    public Agent(Genotype genotype, Integer energy) {
         this.genotype = genotype;
         this.energy = energy;
-
-        loadConfig();
-    }
-
-    private void loadConfig(){
-        if(minCrossoverEnergy == null) {
-            Injector injector = Guice.createInjector(new ConfigurationModule());
-            Configuration config = injector.getInstance(Configuration.class);
-
-            minCrossoverEnergy = config.getIntProperty("min_crossover_energy");
-            minMigrationEnergy = config.getIntProperty("min_migration_energy");
-            crossoverProbability = config.getIntProperty("crossover_probability") * 1.0 / 100;
-            migrationProbability = config.getIntProperty("migration_probability") * 1.0 / 100;
-        }
     }
 
     public IGenotype getGenotype() {
@@ -59,13 +50,11 @@ public class Agent{
         Random random = new Random();
         double luckyNumber = random.nextDouble();
         if (crossoverProbability > luckyNumber) {
-            if(minCrossoverEnergy<energy) {
+            if (minCrossoverEnergy < energy) {
                 return new CrossoverService();
             }
-        } else if (crossoverProbability + migrationProbability > luckyNumber) {
-            if(minMigrationEnergy<energy) {
-                return new MigrationService();
-            }
+        } else if (crossoverProbability + migrationProbability > luckyNumber && minMigrationEnergy < energy) {
+            return new MigrationService();
         }
         return new MeetingService();
     }
@@ -79,7 +68,7 @@ public class Agent{
     }
 
     public int lose() {
-        int lose =  (new Double(Math.ceil(getEnergy() * 0.5))).intValue();
+        int lose = (new Double(Math.ceil(getEnergy() * 0.5))).intValue();
         setEnergy(getEnergy() - lose);
         return lose;
     }
@@ -94,7 +83,7 @@ public class Agent{
         return lose;
     }
 
-    private void setEnergy(int energy){
+    private void setEnergy(int energy) {
         this.energy = energy;
     }
 }

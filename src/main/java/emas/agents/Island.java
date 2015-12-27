@@ -16,7 +16,7 @@ public class Island implements Iterable<Agent> {
     private final List<Agent> deadAgents = new LinkedList<>();
     private final List<Agent> newAgents = new LinkedList<>();
 
-    public Island(){
+    public Island() {
         Injector injector = Guice.createInjector(new ConfigurationModule());
         Configuration config = injector.getInstance(Configuration.class);
 
@@ -24,8 +24,8 @@ public class Island implements Iterable<Agent> {
         initializeAgents(inhabitantsNumber);
     }
 
-    private void initializeAgents(int quantity){
-        for(int i = 0; i<quantity; i++){
+    private void initializeAgents(int quantity) {
+        for (int i = 0; i < quantity; i++) {
             inhabitants.add(new Agent());
         }
     }
@@ -35,32 +35,32 @@ public class Island implements Iterable<Agent> {
         return inhabitants.iterator();
     }
 
-    public void addAgent(Agent agent){
+    public void addAgent(Agent agent) {
         newAgents.add(agent);
     }
 
-    private void addNewAgents(){
-        for(Agent agent: newAgents){
+    private void addNewAgents() {
+        for (Agent agent : newAgents) {
             inhabitants.add(agent);
         }
     }
 
-    private void findDeadAgents(){
-        for (Agent agent:inhabitants) {
-            if(agent.getEnergy() == 0){
+    private void findDeadAgents() {
+        for (Agent agent : inhabitants) {
+            if (agent.getEnergy() == 0) {
                 deadAgents.add(agent);
             }
         }
     }
 
-    private void clearDeadAgents(){
-        for (Agent agent: deadAgents){
+    private void clearDeadAgents() {
+        for (Agent agent : deadAgents) {
             inhabitants.remove(agent);
         }
         deadAgents.clear();
     }
 
-    public void removeDeadAgents(){
+    public void removeDeadAgents() {
         addNewAgents();
         findDeadAgents();
         clearDeadAgents();
