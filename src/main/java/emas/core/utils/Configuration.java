@@ -5,6 +5,8 @@ import emas.core.interfaces.IResourceProvider;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Configuration implements IResourceProvider {
     private Properties properties;
@@ -15,7 +17,7 @@ public class Configuration implements IResourceProvider {
             FileInputStream input = new FileInputStream(file);
             properties.load(input);
         } catch (IOException e) {
-            //pech - TODO?
+            Logger.getAnonymousLogger().log(Level.SEVERE, "Couldn't load properties!", e);
         }
     }
 
