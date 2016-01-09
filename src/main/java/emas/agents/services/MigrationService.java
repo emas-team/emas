@@ -2,10 +2,9 @@ package emas.agents.services;
 
 import emas.agents.Agent;
 import emas.agents.Island;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import emas.agents.exceptions.NotImplementedException;
 
 import java.util.List;
-import java.util.Collections;
 import java.util.Random;
 
 public class MigrationService implements IService {
@@ -19,7 +18,7 @@ public class MigrationService implements IService {
         return ServiceEnum.MIGRATIONSERVICE;
     }
 
-    public void migrate(Agent agent, Island oldIsland, List<Island> islands){
+    public void migrate(Agent agent, Island oldIsland, List<Island> islands) {
         oldIsland.removeAgent(agent);
 
         Random randomizer = new Random();

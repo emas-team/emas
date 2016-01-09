@@ -14,7 +14,7 @@ import emas.operators.IEvaluation;
 import emas.operators.impl.OperationFactoryProxy;
 
 public class Genotype implements IGenotype {
-
+	
 	private final List<Double> genes;
 	private Double fitness;
 

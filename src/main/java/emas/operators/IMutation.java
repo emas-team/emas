@@ -7,13 +7,13 @@ import emas.agents.IGenotype;
  * 
  * @author Klaudia Bałazy, Robert Poparda
  */
-public interface IMutation <T extends IGenotype> {
+public interface IMutation<T extends IGenotype> {
 
-	/**
-	 * Takes genotype parameters and modifies it.
-	 * 
-	 * @param genotype
-	 *            genotype to be mutates
-	 */
-	public void mutate(T genotype);
+    /**
+     * Takes genotype parameters and modifies it.
+     * 
+     * @param genotype
+     *            genotype to be mutates
+     */
+    public void mutate(T genotype);
 }

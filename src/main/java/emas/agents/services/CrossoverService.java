@@ -9,7 +9,6 @@ import emas.operators.IMutation;
 import emas.operators.impl.OperationFactoryProxy;
 
 public class CrossoverService implements IService {
-    public CrossoverService(){}
     @Override
     public Agent doAction(Agent agent1, Agent agent2) {
         OperationFactoryProxy factory = new OperationFactoryProxy();

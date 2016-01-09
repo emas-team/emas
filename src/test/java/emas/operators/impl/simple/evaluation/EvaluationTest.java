@@ -19,47 +19,47 @@ import emas.operators.impl.utils.ParametersHolder;
  */
 public class EvaluationTest {
 
-	private Double storedA = null;
+    private Double storedA = null;
 
-	@Before
-	public void prepareTest() {
-		storedA = null;
-		try {
-			storedA = ParametersHolder.getA();
-		} catch (NullPointerException e) {
-			Logger.getLogger(this.getClass().getCanonicalName()).log(
-					Level.WARNING, "No value was saved in ParametersHolder.");
-		}
-		ParametersHolder.setA(1.0);
-	}
+    @Before
+    public void prepareTest() {
+        storedA = null;
+        try {
+            storedA = ParametersHolder.getA();
+        } catch (NullPointerException e) {
+            Logger.getLogger(this.getClass().getCanonicalName()).log(
+                    Level.WARNING, "No value was saved in ParametersHolder.", e);
+        }
+        ParametersHolder.setA(1.0);
+    }
 
-	@Test
-	public void testEvaluateQuality() {
-		Genotype genotype = new Genotype();
-		genotype.getGenes().clear();
+    @Test
+    public void testEvaluateQuality() {
+        Genotype genotype = new Genotype();
+        genotype.getGenes().clear();
 
-		genotype.getGenes().add(1.0);
-		genotype.getGenes().add(2.0);
-		genotype.getGenes().add(3.0);
+        genotype.getGenes().add(1.0);
+        genotype.getGenes().add(2.0);
+        genotype.getGenes().add(3.0);
 
-		Evaluation evaluation = new Evaluation();
+        Evaluation evaluation = new Evaluation();
 
-		assertEquals("Unexpected result of evaluation", 14.0,
-				evaluation.evaluateQuality(genotype), 0.0);
-	}
+        assertEquals("Unexpected result of evaluation", 14.0,
+                evaluation.evaluateQuality(genotype), 0.0);
+    }
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testEvaluateQualityWhithEmptyList() {
-		Genotype genotype = new Genotype();
-		genotype.getGenes().clear();
+    @Test(expected = IllegalArgumentException.class)
+    public void testEvaluateQualityWhithEmptyList() {
+        Genotype genotype = new Genotype();
+        genotype.getGenes().clear();
 
-		Evaluation evaluation = new Evaluation();
-		evaluation.evaluateQuality(genotype);
-	}
+        Evaluation evaluation = new Evaluation();
+        evaluation.evaluateQuality(genotype);
+    }
 
-	@After
-	public void tearDown() {
-		ParametersHolder.setA(storedA);
-	}
+    @After
+    public void tearDown() {
+        ParametersHolder.setA(storedA);
+    }
 
 }

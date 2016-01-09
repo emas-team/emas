@@ -14,16 +14,16 @@ import emas.agents.genotype.Genotype;
  */
 public class MutationTest {
 
-	@Test
-	public void testMutate() {
-		int genotypeLength = 10;
-		Genotype genotype = createRandomGenotype(genotypeLength);
-		new Mutation().mutate(genotype);
+    @Test
+    public void testMutate() {
+        int genotypeLength = 10;
+        Genotype genotype = createRandomGenotype(genotypeLength);
+        new Mutation().mutate(genotype);
 
-		assertFalse("Mutation cleared genotype list.", genotype.getGenes()
-				.isEmpty());
-		assertEquals("Mutated genotype has improper length.", genotype
-				.getGenes().size(), genotypeLength);
-	}
+        assertFalse("Mutation cleared genotype list.", genotype.getGenes()
+                .isEmpty());
+        assertEquals("Mutated genotype has improper length.", genotype
+                .getGenes().size(), genotypeLength);
+    }
 
 }

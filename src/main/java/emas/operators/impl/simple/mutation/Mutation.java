@@ -13,48 +13,42 @@ import emas.operators.IMutation;
  */
 public class Mutation implements IMutation<IGenotype> {
 
-	private List<Double> mutatedList = new LinkedList<Double>();
+    private List<Double> mutatedList = new LinkedList<Double>();
 
-	/**
-	 * Default constructor.
-	 */
-	public Mutation() {
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void mutate(IGenotype genotype) {
+        if (genotype == null) {
+            throw new IllegalArgumentException("Genotype cannot be null.");
+        }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void mutate(IGenotype genotype) {
-		if (genotype == null) {
-			throw new IllegalArgumentException("Genotype cannot be null.");
-		}
+        List<Double> list = genotype.getGenes();
+        list.forEach(value -> getMutatedList().add(
+                new Double(value + (Math.random() - 0.5) * value)));
 
-		List<Double> list = genotype.getGenes();
-		list.forEach(value -> getMutatedList().add(
-				new Double(value + (Math.random() - 0.5) * value)));
+        updateGenotype(genotype);
+    }
 
-		updateGenotype(genotype);
-	}
+    @SuppressWarnings("unchecked")
+    private void updateGenotype(IGenotype genotype) {
+        // if the mutated list is worse then the original one, it can
+        // be returned - now mutated list is always returned
 
-	@SuppressWarnings("unchecked")
-	private void updateGenotype(IGenotype genotype) {
-		// TODO if the mutated list is worse then the original one, it can
-		// be returned - now mutated list is always returned
-		
-		if (genotype == null) {
-			throw new IllegalArgumentException();
-		}
-		
-		synchronized (genotype) {
-			genotype.getGenes().clear();
-			genotype.getGenes().addAll(getMutatedList());
-		}
-	}
+        if (genotype == null) {
+            throw new IllegalArgumentException();
+        }
 
-	private List<Double> getMutatedList() {
-		return mutatedList;
-	}
+        synchronized (genotype) {
+            genotype.getGenes().clear();
+            genotype.getGenes().addAll(getMutatedList());
+        }
+    }
+
+    private List<Double> getMutatedList() {
+        return mutatedList;
+    }
 
 }

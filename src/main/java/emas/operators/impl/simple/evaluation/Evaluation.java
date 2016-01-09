@@ -13,34 +13,31 @@ import emas.operators.impl.utils.ParametersHolder;
  */
 public class Evaluation implements IEvaluation<IGenotype> {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public double evaluateQuality(IGenotype genotype) {
-		List<Double> pointsList = null;
-		pointsList = (List<Double>) genotype.getGenes();
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public double evaluateQuality(IGenotype genotype) {
+        List<Double> pointsList = (List<Double>) genotype.getGenes();
 
-		if (pointsList == null || pointsList.size() == 0) {
-			throw new IllegalArgumentException("Unable to evaluate genotype.");
-		}
-		try {
-			return evalRastriginFunction(pointsList);
-		} catch (ClassCastException e) {
-			throw new IllegalArgumentException("Unexpected genotype class.", e);
-		}
-	}
+        if (pointsList == null || pointsList.isEmpty()) {
+            throw new IllegalArgumentException("Unable to evaluate genotype.");
+        }
+        try {
+            return evalRastriginFunction(pointsList);
+        } catch (ClassCastException e) {
+            throw new IllegalArgumentException("Unexpected genotype class.", e);
+        }
+    }
 
-	private double evalRastriginFunction(List<Double> pointsList) {
-		double a = ParametersHolder.getA();
-		double n = pointsList.size();
-		double sum = a * n;
-		return pointsList.stream().reduce(
-				sum,
-				(acc, value) -> {
-					return acc + Math.pow(value, 2) - a
-							* Math.cos(2 * Math.PI * value);
-				});
-	}
+    private double evalRastriginFunction(List<Double> pointsList) {
+        double a = ParametersHolder.getA();
+        double n = pointsList.size();
+        double sum = a * n;
+        return pointsList.stream().reduce(
+                sum,
+                (acc, value) -> acc + Math.pow(value, 2) - a
+                        * Math.cos(2 * Math.PI * value));
+    }
 }

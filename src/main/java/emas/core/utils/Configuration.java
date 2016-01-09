@@ -17,8 +17,7 @@ public class Configuration implements IResourceProvider {
             FileInputStream input = new FileInputStream(file);
             properties.load(input);
         } catch (IOException e) {
-            Logger.getLogger(this.getClass().getCanonicalName())
-            	.log(Level.SEVERE, "Problem with reading config file.");
+            Logger.getAnonymousLogger().log(Level.SEVERE, "Couldn't load properties!", e);
         }
     }
 

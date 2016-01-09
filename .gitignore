@@ -7,7 +7,7 @@
 .mtj.tmp/
 
 # Package Files #
-#*.jar
+*.jar
 *.war
 *.ear
 
@@ -173,3 +173,4 @@ Session.vim
 .netrwhist
 *~
 results.csv
+/target/

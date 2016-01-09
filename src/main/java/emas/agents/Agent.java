@@ -3,6 +3,7 @@ package emas.agents;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import emas.agents.genotype.Genotype;
+import emas.agents.genotype.GenotypeFactory;
 import emas.agents.services.CrossoverService;
 import emas.agents.services.IService;
 import emas.agents.services.MeetingService;
@@ -12,59 +13,48 @@ import emas.core.utils.ConfigurationModule;
 
 import java.util.Random;
 
-/**
- *
- */
-public class Agent{
-    private final Genotype genotype;
+public class Agent {
+    private final IGenotype genotype;
     private Integer energy;
-    private Double fitness;
 
     private static Integer minCrossoverEnergy;
     private static Integer minMigrationEnergy;
     private static double crossoverProbability;
     private static double migrationProbability;
 
-    public Agent(){
-        this.genotype = new Genotype();
-        this.energy = 100;
+    static {
+        Injector injector = Guice.createInjector(new ConfigurationModule());
+        Configuration config = injector.getInstance(Configuration.class);
 
-        loadConfig();
+        minCrossoverEnergy = config.getIntProperty("min_crossover_energy");
+        minMigrationEnergy = config.getIntProperty("min_migration_energy");
+        crossoverProbability = config.getIntProperty("crossover_probability") * 1.0 / 100;
+        migrationProbability = config.getIntProperty("migration_probability") * 1.0 / 100;
     }
 
-    public Agent(Genotype genotype, Integer energy){
+    public Agent() {
+        this.genotype = GenotypeFactory.createGenotype();
+        this.energy = 100;
+    }
+
+    public Agent(Genotype genotype, Integer energy) {
         this.genotype = genotype;
         this.energy = energy;
-
-        loadConfig();
     }
 
-    private void loadConfig(){
-        if(minCrossoverEnergy == null) {
-            Injector injector = Guice.createInjector(new ConfigurationModule());
-            Configuration config = injector.getInstance(Configuration.class);
-
-            minCrossoverEnergy = config.getIntProperty("min_crossover_energy");
-            minMigrationEnergy = config.getIntProperty("min_migration_energy");
-            crossoverProbability = config.getIntProperty("crossover_probability") * 1.0 / 100;
-            migrationProbability = config.getIntProperty("migration_probability") * 1.0 / 100;
-        }
-    }
-
-    public Genotype getGenotype() {
+    public IGenotype getGenotype() {
         return genotype;
     }
 
     public IService getService() {
         Random random = new Random();
         double luckyNumber = random.nextDouble();
-        // TODO: minMigrationEnergy
-        if(minCrossoverEnergy<energy) {
-            if (crossoverProbability > luckyNumber) {
+        if (crossoverProbability > luckyNumber) {
+            if (minCrossoverEnergy < energy) {
                 return new CrossoverService();
-            } else if (crossoverProbability + migrationProbability > luckyNumber) {
-                return new MigrationService();
             }
+        } else if (crossoverProbability + migrationProbability > luckyNumber && minMigrationEnergy < energy) {
+            return new MigrationService();
         }
         return new MeetingService();
     }
@@ -78,7 +68,7 @@ public class Agent{
     }
 
     public int lose() {
-        int lose =  (new Double(Math.ceil(getEnergy() * 0.5))).intValue();
+        int lose = (new Double(Math.ceil(getEnergy() * 0.5))).intValue();
         setEnergy(getEnergy() - lose);
         return lose;
     }
@@ -93,7 +83,7 @@ public class Agent{
         return lose;
     }
 
-    private void setEnergy(int energy){
+    private void setEnergy(int energy) {
         this.energy = energy;
     }
 }

@@ -9,28 +9,28 @@ import emas.agents.IGenotype;
  */
 public interface IOperationFactory {
 
-	/**
-	 * Creates and returns new object providing implementation of mutation
-	 * operation.
-	 * 
-	 * @return implementation of mutation operation.
-	 */
+    /**
+     * Creates and returns new object providing implementation of mutation
+     * operation.
+     * 
+     * @return implementation of mutation operation.
+     */
 
-	public IMutation<IGenotype> createMutationOp();
+    public IMutation<IGenotype> createMutationOp();
 
-	/**
-	 * Creates and returns new object providing implementation of intersection
-	 * operation.
-	 * 
-	 * @return implementation of intersection operation.
-	 */
-	public IIntersection<IGenotype> createIntersectionOp();
+    /**
+     * Creates and returns new object providing implementation of intersection
+     * operation.
+     * 
+     * @return implementation of intersection operation.
+     */
+    public IIntersection<IGenotype> createIntersectionOp();
 
-	/**
-	 * Creates and returns new object providing implementation of evaluation
-	 * operation.
-	 * 
-	 * @return implementation of evaluation operation.
-	 */
-	public IEvaluation<IGenotype> createEvaluationOp();
+    /**
+     * Creates and returns new object providing implementation of evaluation
+     * operation.
+     * 
+     * @return implementation of evaluation operation.
+     */
+    public IEvaluation<IGenotype> createEvaluationOp();
 }

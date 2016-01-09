@@ -16,28 +16,28 @@ import emas.operators.impl.simple.mutation.Mutation;
  */
 public class GenotypeOperationFactory implements IOperationFactory {
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public IMutation<IGenotype> createMutationOp() {
-		return new Mutation();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IMutation<IGenotype> createMutationOp() {
+        return new Mutation();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public IIntersection<IGenotype> createIntersectionOp() {
-		return new Intersection();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IIntersection<IGenotype> createIntersectionOp() {
+        return new Intersection();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public IEvaluation<IGenotype> createEvaluationOp() {
-		return new Evaluation();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IEvaluation<IGenotype> createEvaluationOp() {
+        return new Evaluation();
+    }
 
 }

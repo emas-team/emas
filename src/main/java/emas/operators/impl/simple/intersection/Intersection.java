@@ -16,114 +16,118 @@ import emas.operators.impl.simple.evaluation.Evaluation;
  */
 public class Intersection implements IIntersection<IGenotype> {
 
-	private IEvaluation<IGenotype> evaluation;
+    private IEvaluation<IGenotype> evaluation;
 
-	/**
-	 * Default constructor. Sets evaluation as {@link Evaluation}
-	 */
-	public Intersection() {
-		this(new Evaluation());
-	}
+    /**
+     * Default constructor. Sets evaluation as {@link Evaluation}
+     */
+    public Intersection() {
+        this(new Evaluation());
+    }
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param evaluation
-	 */
-	public Intersection(IEvaluation<IGenotype> evaluation) {
-		this.evaluation = evaluation;
-	}
+    /**
+     * Constructor.
+     * 
+     * @param evaluation
+     */
+    public Intersection(IEvaluation<IGenotype> evaluation) {
+        this.evaluation = evaluation;
+    }
 
-	@Override
-	public IGenotype doIntersection(IGenotype genotype1, IGenotype genotype2) {
+    @Override
+    public IGenotype doIntersection(IGenotype genotype1, IGenotype genotype2) {
 
-		assertParametersCorrect(genotype1, genotype2);
+        assertGenotypesNotNull(genotype1, genotype2);
+        List genes1 = genotype1.getGenes();
+        List genes2 = genotype1.getGenes();
+        assertGeneListsEqual(genes1, genes2);
 
-		double val1 = evaluation.evaluateQuality(genotype1);
-		double val2 = evaluation.evaluateQuality(genotype2);
+        double val1 = evaluation.evaluateQuality(genotype1);
+        double val2 = evaluation.evaluateQuality(genotype2);
 
-		Genotype child = new Genotype();
-		child.getGenes().clear();
+        Genotype child = new Genotype();
+        child.getGenes().clear();
 
-		int dimensions = genotype1.getGenes().size();
-		double sign = Math.signum(val1 - val2);
-		for (int i = 0; i < dimensions; i++) {
-			double x1 = (Double) genotype1.getGenes().get(i);
-			double x2 = (Double) genotype2.getGenes().get(i);
-			double betterX = (val1 > val2) ? x2 : x1;
-			double x = betterX + sign * (x2 - x1);
-			child.getGenes().add(x);
-		}
+        int dimensions = genotype1.getGenes().size();
+        double sign = Math.signum(val1 - val2);
+        for (int i = 0; i < dimensions; i++) {
+            double x1 = (Double) genotype1.getGenes().get(i);
+            double x2 = (Double) genotype2.getGenes().get(i);
+            double betterX = (val1 > val2) ? x2 : x1;
+            double x = betterX + sign * (x2 - x1);
+            child.getGenes().add(x);
+        }
 
-		return child;
-	}
+        return child;
+    }
 
-	private void assertParametersCorrect(IGenotype genotype1,
-			IGenotype genotype2) {
-		if (genotype1 == null || genotype2 == null) {
-			throw new IllegalArgumentException("Genotype cannot be null.");
-		}
+    private static void assertGenotypesNotNull(IGenotype genotype1, IGenotype genotype2) {
+        if (genotype1 == null || genotype2 == null) {
+            throw new IllegalArgumentException("Genotype cannot be null.");
+        }
+    }
 
-		List genes1 = genotype1.getGenes();
-		List genes2 = genotype1.getGenes();
+    private static void assertGeneListsEqual(List genes1, List genes2) {
 
-		if (genes1 == null || genes2 == null || genes1.isEmpty()
-				|| genes2.isEmpty()) {
-			throw new IllegalArgumentException("Genotype list cannot be empty.");
-		}
+        if (genes1 == null || genes2 == null || genes1.isEmpty()
+                || genes2.isEmpty()) {
+            throw new IllegalArgumentException("Genotype list cannot be empty.");
+        }
 
-		if (genes1.size() != genes2.size()) {
-			throw new IllegalArgumentException("Genotypes has unequal length.");
-		}
-	}
+        if (genes1.size() != genes2.size()) {
+            throw new IllegalArgumentException("Genotypes has unequal length.");
+        }
+    }
 
-	/**
-	 * Warning! Returnes avarege values.
-	 * 
-	 * @param genotype1
-	 *            genotype 1
-	 * @param genotype2
-	 *            genotype 2
-	 * @return child genotype
-	 */
-	private IGenotype alternativeCrossover(IGenotype genotype1,
-			IGenotype genotype2) {
-		List<Double> genes1 = genotype1.getGenes();
-		List<Double> genes2 = genotype1.getGenes();
+    /**
+     * Warning! Returnes avarege values.
+     * 
+     * @param genotype1
+     *            genotype 1
+     * @param genotype2
+     *            genotype 2
+     * @return child genotype
+     */
+    private static IGenotype alternativeCrossover(IGenotype genotype1,
+            IGenotype genotype2) {
+        List<Double> genes1 = genotype1.getGenes();
+        List<Double> genes2 = genotype2.getGenes();
 
-		IGenotype childGenotype = new Genotype();
-		@SuppressWarnings("unchecked")
-		List<Double> genes = childGenotype.getGenes();
+        IGenotype childGenotype = new Genotype();
+        @SuppressWarnings("unchecked")
+        List<Double> genes = childGenotype.getGenes();
 
-		Iterator<Double> it1 = genes1.iterator();
-		Iterator<Double> it2 = genes2.iterator();
+        Iterator<Double> it1 = genes1.iterator();
+        Iterator<Double> it2 = genes2.iterator();
 
-		while (it1.hasNext() && it2.hasNext()) {
-			genes.add(intersect(it1.next(), it2.next()));
-		}
+        while (it1.hasNext() && it2.hasNext()) {
+            genes.add(intersect(it1.next(), it2.next()));
+        }
 
-		return childGenotype;
-	}
+        return childGenotype;
+    }
 
-	private Double intersect(Double gen1, Double gen2) {
-		long bits1 = Double.doubleToLongBits(gen1);
-		long bits2 = Double.doubleToLongBits(gen2);
-		long child = 0;
+    private static Double intersect(Double gen1, Double gen2) {
+        long bits1 = Double.doubleToLongBits(gen1);
+        long bits2 = Double.doubleToLongBits(gen2);
+        long child = 0;
 
-		for (int i = 0; i < 64; i++) {
-			long bit1 = bits1 >> i & 0x01;
-			long bit2 = bits2 >> i & 0x01;
-			child = child | (((Math.random() < 0.5) ? bit1 : bit2) << i);
-		}
-		return Double.longBitsToDouble(child);
-	}
+        for (int i = 0; i < 64; i++) {
+            long bit1 = bits1 >> i & 0x01;
+            long bit2 = bits2 >> i & 0x01;
+            child = child | (((Math.random() < 0.5) ? bit1 : bit2) << i);
+        }
+        return Double.longBitsToDouble(child);
+    }
 
-	private void showAsBits(long value) {
-		long tmp = value;
-		for (int i = 0; i < 64; i++) {
-			long bit = tmp >> i & 0x01;
-			System.out.print(bit);
-		}
-		System.out.println();
-	}
+    private static String asBits(long value) {
+        long tmp = value;
+        long bit;
+        StringBuilder bits = new StringBuilder();
+        for (int i = 0; i < 64; i++) {
+            bit = tmp >> i & 0x01;
+            bits.append(bit);
+        }
+        return bits.toString();
+    }
 }
