@@ -16,26 +16,12 @@ import emas.operators.impl.simple.mutation.Mutation;
  */
 public class GenotypeOperationFactory implements IOperationFactory {
 
-	public IEvaluation<IGenotype> internalEvaluation;
-
-	/**
-	 * Constructor.
-	 */
-	public GenotypeOperationFactory() {
-		this(new Evaluation());
-	}
-
-	
-	public GenotypeOperationFactory(IEvaluation<IGenotype> evaluation) {
-		this.internalEvaluation = evaluation;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public IMutation<IGenotype> createMutationOp() {
-		return new Mutation(internalEvaluation);
+		return new Mutation();
 	}
 
 	/**

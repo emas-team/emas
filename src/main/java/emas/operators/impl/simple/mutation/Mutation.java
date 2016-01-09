@@ -4,9 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import emas.agents.IGenotype;
-import emas.operators.IEvaluation;
 import emas.operators.IMutation;
-import emas.operators.impl.simple.evaluation.Evaluation;
 
 /**
  * Implementation of mutation operation.
@@ -15,24 +13,12 @@ import emas.operators.impl.simple.evaluation.Evaluation;
  */
 public class Mutation implements IMutation<IGenotype> {
 
-	// private IEvaluation<IGenotype> evaluation;
 	private List<Double> mutatedList = new LinkedList<Double>();
 
 	/**
-	 * Default constructor. Sets the default evaluation method.
+	 * Default constructor.
 	 */
 	public Mutation() {
-		this(new Evaluation());
-	}
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param evaluation
-	 *            evaluation
-	 */
-	public Mutation(IEvaluation<IGenotype> evaluation) {
-		// this.evaluation = evaluation;
 	}
 
 	/**
@@ -52,10 +38,15 @@ public class Mutation implements IMutation<IGenotype> {
 		updateGenotype(genotype);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void updateGenotype(IGenotype genotype) {
 		// TODO if the mutated list is worse then the original one, it can
 		// be returned - now mutated list is always returned
-
+		
+		if (genotype == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		synchronized (genotype) {
 			genotype.getGenes().clear();
 			genotype.getGenes().addAll(getMutatedList());

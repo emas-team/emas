@@ -27,9 +27,9 @@ public class GenotypeComparator implements Comparator<Genotype> {
 	@Override
 	public int compare(Genotype genotype1, Genotype genotype2) {
 
-		return (int) (-1 * Math.signum(getQualityEvaluator().evaluateQuality(
-				genotype1)
-				- getQualityEvaluator().evaluateQuality(genotype2)));
+		return (int) (Math.signum(getQualityEvaluator().evaluateQuality(
+				genotype2)
+				- getQualityEvaluator().evaluateQuality(genotype1)));
 	}
 
 	public IEvaluation<Genotype> getQualityEvaluator() {

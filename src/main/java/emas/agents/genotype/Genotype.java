@@ -6,11 +6,12 @@ import java.util.Random;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+
 import emas.agents.IGenotype;
 import emas.core.utils.Configuration;
 import emas.core.utils.ConfigurationModule;
 import emas.operators.IEvaluation;
-import emas.operators.impl.GenotypeOperationFactory;
+import emas.operators.impl.OperationFactoryProxy;
 
 public class Genotype implements IGenotype {
 
@@ -37,7 +38,7 @@ public class Genotype implements IGenotype {
 	@Override
 	public Double evaluate() {
 		if (fitness == null) {
-			IEvaluation evaluation = (new GenotypeOperationFactory())
+			IEvaluation<IGenotype> evaluation = (new OperationFactoryProxy())
 					.createEvaluationOp();
 			fitness = evaluation.evaluateQuality(this);
 		}
